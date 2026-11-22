@@ -131,6 +131,7 @@ tempfail
 testdata
 testpaths
 tfstate
+timebox
 tojson
 tolower
 tombi
