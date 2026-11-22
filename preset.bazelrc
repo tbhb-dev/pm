@@ -45,7 +45,7 @@ common --enable_platform_specific_config
 # Docs: https://registry.build/flag/bazel@9.3.2?filter=enable_platform_specific_config
 
 # Speed up all builds by not checking if external repository files have been modified.
-# For reference: the Bazel source for RepositoryOptions (experimental_check_external_repository_files).
+# For reference: https://github.com/bazelbuild/bazel/blob/1af61b21df99edc2fc66939cdf14449c2661f873/src/main/java/com/google/devtools/build/lib/bazel/repository/RepositoryOptions.java#L244
 common --noexperimental_check_external_repository_files
 # Docs: https://registry.build/flag/bazel@9.3.2?filter=experimental_check_external_repository_files
 
