@@ -1,7 +1,1 @@
----
-type: work-note
-max_words: 60
-max_code_lines: 10
-sections: []
----
 {{note}}
