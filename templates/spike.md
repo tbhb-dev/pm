@@ -1,17 +1,13 @@
 # {{title}}
 
-## Outcome
+## Question
 
-{{outcome}}
+{{question}}
+
+## Decision
+
+{{decision}}
 
 ## Checks
 
-- [ ] {{first_check}}
-
-## Context
-
-{{context}}
-
-## Out of scope
-
-{{out_of_scope}}
+- [ ] {{first_deliverable}}

@@ -1,15 +1,15 @@
 package content
 
 // Spike issue. Template: templates/spike.md (starting text only).
-// Limits follow the Fable review of 2026-11-22: opening sections near 40 words
-// and a total below the sum of the sections.
+// Load with core.cue, taxonomy.cue and issue.cue, and one variant file per run.
 
 #Hints: spike: {
-	title:          "The title, at most 70 characters, no trailing period."
-	outcome:        "The question this spike answers."
-	checks:         "Checkboxes that prove it is done, one short line each."
+	title:          "The title: 15 to 70 characters, at least three words, no trailing period or colon."
+	question:       "The one question this spike answers. End it with a question mark."
+	decision:       "The decision the answer unblocks."
+	checks:         "Deliverables as task boxes, at most three."
 	context:        "Why this matters and what to know first. Link, don't paste."
-	"out-of-scope": "What this issue will not do."
+	"out-of-scope": "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
 #Variant: #Draft & {
@@ -18,60 +18,73 @@ package content
 
 	metadata: close({
 		type: "Spike"
-		// Only area and role labels exist: priority is a field, never a label.
-		labels: [#AreaLabel, ...(#AreaLabel | #RoleLabel)]
+		// One area label is required and one role label is optional. The
+		// kernel turns these into labels. Priority is a field, never a label.
+		area:  #AreaLabel
+		role?: #RoleLabel
 		fields: close({
 			"work-type": #WorkType
 			priority?:   #Priority
+			timebox:     #Timebox
 		})
 		assignees: [...string]
-		parent?: string
+		parent?: #IssueRef
 	})
 
-	metrics: visible: words: <=170
+	metrics: {
+		visible: words:     <=130
+		source: characters: <=1300
+	}
 
-	blockOrder: ["title", "outcome", "checks", "context", "out-of-scope"]
+	_order: ["title", "question", "decision", "checks", "context", "out-of-scope"]
+	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #DraftBlock & {
-			kind:    "heading"
-			level:   1
-			visible: !~#"\.$"#
-			metrics: visible: characters: >=1 & <=70
-		}
-		outcome: #DraftBlock & {
-			kind:    "section"
-			heading: "Outcome"
+		title: #IssueTitle
+		question: #IssueSection & {
+			heading: "Question"
 			metrics: {
-				visible: words: >=10 & <=40
-				codeLines: <=10
+				visible: words:     >=3 & <=40
+				source: characters: <=320
+				codeLines: <=0
+			}
+			visible: =~#"\?$"#
+		}
+		decision: #IssueSection & {
+			heading: "Decision"
+			metrics: {
+				visible: words:     >=3 & <=30
+				source: characters: <=240
+				codeLines: <=0
 			}
 		}
-		checks: #DraftBlock & {
-			kind:    "section"
+		checks: #IssueSection & {
 			heading: "Checks"
 			metrics: {
-				visible: words: >=5 & <=60
-				codeLines:  <=10
+				visible: words:     >=3 & <=60
+				source: characters: <=480
+				codeLines:  <=0
 				paragraphs: 0
 				lists:      1
-				listItems:  >=1 & <=5
+				listItems:  >=1 & <=3
+				taskLists:  1
+				taskItems:  listItems
 			}
-			content: [#List & {items: [...{metrics: visible: words: <=20}]}]
+			content: [...(#BlankLine | #List & {items: [...#IssueItem & {metrics: visible: words: <=15}]})]
 		}
-		context: #DraftBlock & {
-			kind:    "section"
+		context?: #IssueSection & {
 			heading: "Context"
 			metrics: {
-				visible: words: >=10 & <=80
+				visible: words:     <=60
+				source: characters: <=480
 				codeLines: <=10
 			}
 		}
-		"out-of-scope": #DraftBlock & {
-			kind:    "section"
+		"out-of-scope"?: #IssueSection & {
 			heading: "Out of scope"
 			metrics: {
-				visible: words: <=30
-				codeLines: <=10
+				visible: words:     >=3 & <=30
+				source: characters: <=240
+				codeLines: <=0
 			}
 		}
 	})

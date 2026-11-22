@@ -4,18 +4,14 @@
 
 {{outcome}}
 
-## Checks
+## Actual
 
-- [ ] {{first_check}}
-
-## Context
-
-{{context}}
+{{actual}}
 
 ## Reproduction
 
-{{reproduction}}
+1. {{first_step}}
 
-## Out of scope
+## Checks
 
-{{out_of_scope}}
+- [ ] {{first_check}}
