@@ -1,0 +1,5 @@
+---
+type: work-note
+max_words: 120
+---
+{{note}}
