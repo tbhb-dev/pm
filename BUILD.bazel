@@ -98,6 +98,8 @@ repo_layout_test(
         "LICENSES",
         # repo_files includes designs/** with allow_empty = True.
         "designs",
+        "schemas",
+        "templates",
     ],
 )
 
