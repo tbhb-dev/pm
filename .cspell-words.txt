@@ -109,6 +109,7 @@ runfiles
 rylignore
 sandboxed
 selftest
+setext
 shellcheck
 shfmt
 slurpfile
