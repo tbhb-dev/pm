@@ -62,12 +62,11 @@ package content
 			metrics: {
 				visible: words:     >=3 & <=60
 				source: characters: <=480
-				codeLines:  <=0
-				paragraphs: 0
-				lists:      1
-				listItems:  >=1 & <=3
-				taskLists:  1
-				taskItems:  listItems
+				codeLines: <=0
+				lists:     1
+				listItems: >=1 & <=3
+				taskLists: 1
+				taskItems: listItems
 			}
 			content: [...(#BlankLine | #List & {items: [...#IssueItem & {metrics: visible: words: <=15}]})]
 		}
