@@ -3,7 +3,7 @@ package content
 // Work note comment. Template: templates/work-note.txt (starting text only).
 // Load with core.cue and taxonomy.cue, and one variant file per run.
 
-#Hints: "work-note": note: "One short paragraph with evidence: a repository reference, a link, or a code span."
+#Hints: "work-note": preamble: "Record the evidence in one short paragraph with a repository reference, a link, or a code span. Attach it before closing completed work under the Definition of Done. Use ci_enforced with a reference to the CI run for a gate it checks."
 
 #Variant: #Draft & {
 	object:  "issue-comment"
@@ -13,9 +13,9 @@ package content
 
 	metrics: visible: words: >=3 & <=60
 
-	blockOrder: ["note"]
+	blockOrder: ["preamble"]
 	blocks: close({
-		note: #DraftBlock & {
+		preamble: #DraftBlock & {
 			kind:   "text"
 			source: =~#"(`[^`]+`|https?://|[a-z0-9][a-z0-9-]*/[a-z0-9._-]+#[0-9]+|\b[0-9a-f]{7,40}\b)"#
 			metrics: {

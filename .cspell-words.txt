@@ -26,6 +26,7 @@ cand
 capfd
 capsys
 cgnat
+Cohn
 complexipy
 conftest
 cpus

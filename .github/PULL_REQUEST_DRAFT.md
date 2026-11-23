@@ -1,18 +1,18 @@
 ---
-base: feat/defect-spike-templates
+base: feat/epic-initiative-templates
 draft: true
 ---
 
-# feat: add Epic and Initiative issue templates
+# feat: check work notes and document issue evidence
 
 ## Why
 
-The template proposal used a checklist for both capability work and wider outcomes. Epic and Initiative readers need to see what success looks like and how to confirm it. [Original template proposal](https://github.com/tbhb-dev/pm/pull/3)
+A work note gives reviewers a place to find evidence when an issue closes. The earlier work note schema expected a different block name from the one the Markdown normalizer produces. [Original template proposal](https://github.com/tbhb-dev/pm/pull/3)
 
 ## Behavior change
 
-Epic and Initiative require one to six acceptance criteria and one to three verification items. The Epic title describes a capability. Use a measurable outcome for the Initiative title. The kernel can warn when an Epic title uses the Feature format. The hints point to evidence for closure and use `ci_enforced` to reference existing gates.
+The schema validates work notes against the block the normalizer produces. Record evidence and links to applicable CI runs at closure. The design note explains acceptance criteria, Verification, and the Definition of Done. It cites two sources, including the 2020 Scrum Guide.
 
 ## Verification
 
-Running `cue vet` with version 0.17.1 accepted all seven schemas in the stack. All 191 normalized cases passed, including criterion counts at both limits and the Epic title warning.
+Running `cue vet` with version 0.17.1 accepted all eight schemas. All 196 checks passed. The work note cases covered valid evidence and rejection of a note without evidence. Both quotations match the cited pages.
