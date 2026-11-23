@@ -43,7 +43,7 @@ import (
 			severity:    #Severity
 		})
 		assignees: [...string]
-		parent: #IssueRef
+		parent?: #IssueRef
 	})
 
 	metrics: {

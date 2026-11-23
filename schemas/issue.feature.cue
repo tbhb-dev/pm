@@ -29,7 +29,7 @@ package content
 			priority?:   #Priority
 		})
 		assignees: [...string]
-		parent?: #IssueRef
+		parent: #IssueRef
 	})
 
 	metrics: {
