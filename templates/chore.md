@@ -4,6 +4,10 @@
 
 {{outcome}}
 
-## Checks
+## Acceptance criteria
 
-- [ ] {{first_check}}
+- {{first_criterion}}
+
+## Verification
+
+- {{first_verification}}
