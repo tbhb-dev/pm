@@ -27,6 +27,7 @@ package content
 		fields: close({
 			"work-type"?: #WorkType
 			priority?:    #Priority
+			source?:      #Source
 		})
 		assignees: [...string]
 		parent: #IssueRef

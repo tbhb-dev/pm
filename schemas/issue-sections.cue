@@ -1,5 +1,8 @@
 package content
 
+// Mirrors the shared taxonomy's #Source. Identical definitions unify, so the shared copy can arrive later.
+#Source: "Import"
+
 // Shared section layout for issue variants. Item constraints come from tools.
 #IssueEvidenceSection: #IssueSection & {
 	metrics: {
