@@ -34,6 +34,8 @@ The templates render required sections from supplied keys. Insert optional secti
 
 The shared title rules cap length and reject ticket prefixes. A Spike title must end with a question mark. Use an outcome for Initiative and a capability noun phrase for Epic. Feature uses `<Role> can <action>`, Task and Chore start with an imperative verb, and Defect uses `<Thing> <does wrong> when <condition>`. The kernel can evaluate `#KernelChecks.titleShape` separately to warn about phrasing.
 
+Use the imported variant only for the tracker import. It takes an assignee list and accepts Initiative, Epic, Feature, Defect, Chore, and Task as issue types. The area and role labels, parent, and `blocked_by` references are optional. The import sets Source to `Import`. Refinement keeps that value and assigns Work type and Priority as needed. The title needs at least one word and allows up to 256 visible characters. The required Context section allows up to 450 visible words, 2,600 source characters, and 40 lines of code. The draft allows up to 460 visible words and 2,700 source characters.
+
 ## Unverified by the schema
 
 The schema checks the format of each parent reference. The kernel needs to fetch the parent to confirm its type. A reviewer still needs to check whether each criterion states one observable outcome, whether evidence covers the criteria, and whether closure meets the Definition of Done.

@@ -41,6 +41,7 @@ import (
 			"work-type": #WorkType
 			priority?:   #Priority
 			severity:    #Severity
+			source?:     #Source
 		})
 		assignees: [...string]
 		parent?: #IssueRef

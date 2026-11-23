@@ -27,6 +27,7 @@ package content
 			"work-type": #WorkType
 			priority?:   #Priority
 			timebox:     #Timebox
+			source?:     #Source
 		})
 		assignees: [...string]
 		parent?: #IssueRef
