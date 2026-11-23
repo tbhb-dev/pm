@@ -1,5 +1,5 @@
 # {{title}}
 
-## Verification <!-- Set the parent to the non-Task issue this subdivides. -->
+## Verification
 
 - {{first_verification}}

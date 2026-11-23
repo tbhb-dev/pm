@@ -4,6 +4,10 @@
 
 {{outcome}}
 
+## Context
+
+{{context}}
+
 ## Actual
 
 {{actual}}
@@ -19,3 +23,7 @@
 ## Verification
 
 - Regression test: {{regression_test}}
+
+## Out of scope
+
+{{out_of_scope}}

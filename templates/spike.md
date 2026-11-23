@@ -4,6 +4,10 @@
 
 {{question}}
 
+## Context
+
+{{context}}
+
 ## Decision
 
 {{decision}}
@@ -15,3 +19,7 @@
 ## Verification
 
 - {{first_verification}}
+
+## Out of scope
+
+{{out_of_scope}}
