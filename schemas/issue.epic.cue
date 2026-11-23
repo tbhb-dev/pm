@@ -5,10 +5,10 @@ package content
 
 #Hints: epic: {
 	title:                 "Name the capability as a noun phrase."
-	outcome:               "What is true when every sub-issue is done."
+	outcome:               "State in one sentence what will be true when every sub-issue is done."
+	context:               "Why this matters and what to know first. Link, don't paste."
 	"acceptance-criteria": "State 1 to 6 observable parts of the capability that must be present. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
 	verification:          "Give 1 to 3 ways to prove the criteria, such as an integrated demo or a capability read." + #DoneHint
-	context:               "Why this matters and what to know first. Link, don't paste."
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
@@ -37,7 +37,7 @@ package content
 		source: characters: <=1800
 	}
 
-	_order: ["title", "outcome", "acceptance-criteria", "verification", "context", "out-of-scope"]
+	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #EpicTitle

@@ -5,10 +5,10 @@ package content
 
 #Hints: feature: {
 	title:                 "Use a role and what it can do, in the form '<Role> can <action>'."
-	outcome:               "What users or agents can do after this ships."
+	outcome:               "State in one sentence what users or agents will be able to do after this ships."
+	context:               "Why this matters and what to know first. Link, don't paste."
 	"acceptance-criteria": "State 2 to 5 observable behaviors the role can use. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a demo or a behavior test." + #DoneHint
-	context:               "Why this matters and what to know first. Link, don't paste."
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
@@ -37,7 +37,7 @@ package content
 		source: characters: <=2000
 	}
 
-	_order: ["title", "outcome", "acceptance-criteria", "verification", "context", "out-of-scope"]
+	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #FeatureTitle

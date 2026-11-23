@@ -4,6 +4,10 @@
 
 {{outcome}}
 
+## Context
+
+{{context}}
+
 ## Acceptance criteria
 
 - {{first_criterion}}
@@ -11,7 +15,3 @@
 ## Verification
 
 - {{first_verification}}
-
-## Context
-
-{{context}}

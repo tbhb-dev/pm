@@ -6,6 +6,8 @@ Mike Cohn uses *conditions of satisfaction* for acceptance criteria. He writes t
 
 ## Issue criteria and evidence
 
+After the title, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context, Acceptance criteria, Verification, and Out of scope. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. A Task has only a title and Verification.
+
 Write one observable outcome per acceptance criterion. Verification names the evidence for the criteria. An evidence item can cover multiple criteria if the reader can tell which ones it proves.
 
 | Issue type | Acceptance criteria | Verification |
@@ -28,7 +30,7 @@ For this repository, close completed work with evidence on the issue, such as a 
 
 The issue variants load the tools schemas alongside the local definitions in `schemas/issue-sections.cue`. The shared item rules require 2 to 20 visible words and reject standalone restatements such as “Tests pass.” [Shared schemas](https://github.com/tbhb-dev/tools/tree/5192863b/schemas)
 
-The templates render required sections from supplied keys. Append optional sections only when there is text for them, since the renderer raises `KeyError` for an absent key.
+The templates render required sections from supplied keys. Insert optional sections in the order above when there is text for them, since the renderer raises `KeyError` for an absent key.
 
 The shared title rules cap length and reject ticket prefixes. A Spike title must end with a question mark. Use an outcome for Initiative and a capability noun phrase for Epic. Feature uses `<Role> can <action>`, Task and Chore start with an imperative verb, and Defect uses `<Thing> <does wrong> when <condition>`. The kernel can evaluate `#KernelChecks.titleShape` separately to warn about phrasing.
 

@@ -10,12 +10,12 @@ import (
 
 #Hints: defect: {
 	title:                 "Use '<Thing> <does wrong> when <condition>' to name the failure and its trigger."
-	outcome:               "The expected behavior, correct once this is fixed."
+	outcome:               "State the expected behavior after the fix in one sentence."
+	context:               "Why this matters and what to know first. Link, don't paste."
 	actual:                "What happens now, with the error text if there is one."
 	reproduction:          "Numbered steps to see the fault."
 	"acceptance-criteria": "State 1 to 3 corrected behaviors under the conditions that triggered the failure. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
 	verification:          "Give 1 to 3 ways to prove the criteria. Include a 'Regression test:' item naming a test that reproduces the failure and proves the fix." + #DoneHint
-	context:               "Why this matters and what to know first. Link, don't paste."
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
@@ -51,7 +51,7 @@ import (
 		source: characters: <=2200
 	}
 
-	_order: ["title", "outcome", "actual", "reproduction", "acceptance-criteria", "verification", "context", "out-of-scope"]
+	_order: ["title", "outcome", "context", "actual", "reproduction", "acceptance-criteria", "verification", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #DefectTitle

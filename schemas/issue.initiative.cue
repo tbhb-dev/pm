@@ -5,10 +5,10 @@ package content
 
 #Hints: initiative: {
 	title:                 "State one measurable outcome as a condition that holds once the work is done."
-	outcome:               "A measurable result that proves the initiative worked."
+	outcome:               "State in one sentence the measurable result that will show the initiative worked."
+	context:               "Why this matters and what to know first. Link, don't paste."
 	"acceptance-criteria": "State 1 to 6 observable results or measures that indicate the outcome was reached. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a measured result or a decision record." + #DoneHint
-	context:               "Why this matters and what to know first. Link, don't paste."
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
@@ -35,7 +35,7 @@ package content
 		source: characters: <=1800
 	}
 
-	_order: ["title", "outcome", "acceptance-criteria", "verification", "context", "out-of-scope"]
+	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #InitiativeTitle

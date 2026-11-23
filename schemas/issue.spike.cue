@@ -6,10 +6,10 @@ package content
 #Hints: spike: {
 	title:                 "Ask the research question and end with a question mark."
 	question:              "The one question this spike answers. End it with a question mark."
+	context:               "Why this matters and what to know first. Link, don't paste."
 	decision:              "The decision the answer unblocks."
 	"acceptance-criteria": "State 1 to 3 observable conditions for answering the question and informing the decision. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a findings record or a decision link." + #DoneHint
-	context:               "Why this matters and what to know first. Link, don't paste."
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
@@ -37,7 +37,7 @@ package content
 		source: characters: <=1300
 	}
 
-	_order: ["title", "question", "decision", "acceptance-criteria", "verification", "context", "out-of-scope"]
+	_order: ["title", "question", "context", "decision", "acceptance-criteria", "verification", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #SpikeTitle
