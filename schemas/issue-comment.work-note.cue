@@ -3,7 +3,7 @@ package content
 // Work note comment. Template: templates/work-note.txt (starting text only).
 // Load with core.cue and taxonomy.cue, and one variant file per run.
 
-#Hints: "work-note": preamble: "Record the evidence in one short paragraph with a repository reference, a link, or a code span. Attach it before closing completed work under the Definition of Done. Use ci_enforced with a reference to the CI run for a gate it checks."
+#Hints: "work-note": preamble: "Record the evidence in one short paragraph with a repository reference, a link, or a code span. Attach it before closing completed work under the Definition of Done. Link the CI run for a gate it checks."
 
 #Variant: #Draft & {
 	object:  "issue-comment"

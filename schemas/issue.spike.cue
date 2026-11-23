@@ -5,15 +5,18 @@ package content
 
 #Hints: spike: {
 	title:                 "Ask the research question and end with a question mark."
+	parent:                "Optional, as owner/repo#N. Name the Feature or Epic this spike informs."
 	question:              "The one question this spike answers. End it with a question mark."
-	context:               "Why this matters and what to know first. Link, don't paste."
+	context:               #ContextHint
 	decision:              "The decision the answer unblocks."
-	"acceptance-criteria": "State 1 to 3 observable conditions for answering the question and informing the decision. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
+	"acceptance-criteria": "State 1 to 3 observable conditions for answering the question and informing the decision." + #ItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a findings record or a decision link." + #DoneHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
-#Variant: #Draft & {
+#KernelChecks: parentType: "Feature" | "Epic"
+
+#Variant: #Draft & #QualifiedRefs & {
 	object:  "issue"
 	variant: "spike"
 

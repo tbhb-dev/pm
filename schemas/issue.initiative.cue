@@ -5,14 +5,15 @@ package content
 
 #Hints: initiative: {
 	title:                 "State one measurable outcome as a condition that holds once the work is done."
+	parent:                "An Initiative has no parent."
 	outcome:               "State in one sentence the measurable result that will show the initiative worked."
-	context:               "Why this matters and what to know first. Link, don't paste."
-	"acceptance-criteria": "State 1 to 6 observable results or measures that indicate the outcome was reached. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
+	context:               #ContextHint
+	"acceptance-criteria": "State 1 to 6 observable results or measures that indicate the outcome was reached." + #ItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a measured result or a decision record." + #DoneHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
-#Variant: #Draft & {
+#Variant: #Draft & #QualifiedRefs & {
 	object:  "issue"
 	variant: "initiative"
 

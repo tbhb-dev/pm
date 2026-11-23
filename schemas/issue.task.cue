@@ -5,7 +5,7 @@ package content
 
 #Hints: task: {
 	title:        "Start with an imperative verb that names the work."
-	parent:       "Use the reference for the issue this work subdivides. The parent can be any issue type except Task."
+	parent:       "Required, as owner/repo#N. Name the issue this work subdivides. The parent can be any issue type except Task. A Task without a parent is refused."
 	verification: "Give 1 to 3 ways to prove the task is complete." + #DoneHint
 }
 
@@ -14,7 +14,7 @@ package content
 	parentType: string & !="Task"
 }
 
-#Variant: #Draft & {
+#Variant: #Draft & #QualifiedRefs & {
 	object:  "issue"
 	variant: "task"
 

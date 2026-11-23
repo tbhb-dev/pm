@@ -5,16 +5,20 @@ package content
 
 #Hints: feature: {
 	title:                 "Use a role and what it can do, in the form '<Role> can <action>'."
+	parent:                "Required, as owner/repo#N. Name the Epic this feature belongs to."
 	outcome:               "State in one sentence what users or agents will be able to do after this ships."
-	context:               "Why this matters and what to know first. Link, don't paste."
-	"acceptance-criteria": "State 2 to 5 observable behaviors the role can use. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
+	context:               #ContextHint
+	"acceptance-criteria": "State 2 to 5 observable behaviors the role can use." + #ItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a demo or a behavior test." + #DoneHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
-#KernelChecks: titleShape: {visible: =~#FeatureShape, ...}
+#KernelChecks: {
+	titleShape: {visible: =~#FeatureShape, ...}
+	parentType: "Epic"
+}
 
-#Variant: #Draft & {
+#Variant: #Draft & #QualifiedRefs & {
 	object:  "issue"
 	variant: "feature"
 

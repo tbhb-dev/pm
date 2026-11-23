@@ -5,16 +5,20 @@ package content
 
 #Hints: chore: {
 	title:                 "Start with an imperative verb that names the upkeep."
+	parent:                "Optional, as owner/repo#N. Name the Feature, Epic or Problem this chore belongs to."
 	outcome:               "State in one sentence what will be true when the upkeep is finished."
-	context:               "Why this matters and what to know first. Link, don't paste."
-	"acceptance-criteria": "State 1 to 3 observable results of the upkeep. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
+	context:               #ContextHint
+	"acceptance-criteria": "State 1 to 3 observable results of the upkeep." + #ItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a configuration read or a command with its expected result." + #DoneHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
-#KernelChecks: titleShape: {visible: =~#TaskShape, ...}
+#KernelChecks: {
+	titleShape: {visible: =~#TaskShape, ...}
+	parentType: "Feature" | "Epic" | "Problem"
+}
 
-#Variant: #Draft & {
+#Variant: #Draft & #QualifiedRefs & {
 	object:  "issue"
 	variant: "chore"
 
