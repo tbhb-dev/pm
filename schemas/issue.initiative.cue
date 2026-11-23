@@ -1,14 +1,15 @@
 package content
 
 // Initiative issue. Template: templates/initiative.md (starting text only).
-// Load with core.cue, taxonomy.cue and issue.cue, and one variant file per run.
+// Load with tools' core.cue, taxonomy.cue and issue.cue, plus issue-sections.cue.
 
 #Hints: initiative: {
-	title:          "The title: 15 to 70 characters, at least three words, no trailing period or colon."
-	outcome:        "A measurable result that proves the initiative worked."
-	checks:         "Task list boxes that prove it is done, one short line each."
-	context:        "Why this matters and what to know first. Link, don't paste."
-	"out-of-scope": "What this issue won't do. Leave the section out when there is nothing to say."
+	title:                 "State one measurable outcome as a condition that holds once the work is done."
+	outcome:               "A measurable result that proves the initiative worked."
+	"acceptance-criteria": "State 1 to 6 observable results or measures that indicate the outcome was reached. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
+	verification:          "Give 1 to 3 ways to prove the criteria, such as a measured result or a decision record." + #DoneHint
+	context:               "Why this matters and what to know first. Link, don't paste."
+	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
 #Variant: #Draft & {
@@ -34,10 +35,10 @@ package content
 		source: characters: <=1800
 	}
 
-	_order: ["title", "outcome", "checks", "context", "out-of-scope"]
+	_order: ["title", "outcome", "acceptance-criteria", "verification", "context", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #IssueTitle & {visible: !~#"\?$"#}
+		title: #InitiativeTitle
 		outcome: #IssueSection & {
 			heading: "Outcome"
 			metrics: {
@@ -46,19 +47,8 @@ package content
 				codeLines: <=0
 			}
 		}
-		checks: #IssueSection & {
-			heading: "Checks"
-			metrics: {
-				visible: words:     >=4 & <=80
-				source: characters: <=640
-				codeLines: <=0
-				lists:     1
-				listItems: >=1 & <=6
-				taskLists: 1
-				taskItems: listItems
-			}
-			content: [...(#BlankLine | #List & {items: [...#IssueItem & {metrics: visible: words: <=15}]})]
-		}
+		"acceptance-criteria": #AcceptanceCriteriaSection & {metrics: listItems: >=1 & <=6}
+		verification: #VerificationSection
 		context: #IssueSection & {
 			heading: "Context"
 			metrics: {
