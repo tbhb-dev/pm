@@ -26,6 +26,7 @@ cand
 capfd
 capsys
 cgnat
+Cohn
 complexipy
 conftest
 cpus
@@ -109,6 +110,7 @@ runfiles
 rylignore
 sandboxed
 selftest
+setext
 shellcheck
 shfmt
 slurpfile
@@ -130,6 +132,7 @@ tempfail
 testdata
 testpaths
 tfstate
+timebox
 tojson
 tolower
 tombi
