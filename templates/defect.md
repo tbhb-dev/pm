@@ -12,6 +12,10 @@
 
 1. {{first_step}}
 
-## Checks
+## Acceptance criteria
 
-- [ ] {{first_check}}
+- {{first_criterion}}
+
+## Verification
+
+- Regression test: {{regression_test}}

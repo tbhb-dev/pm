@@ -8,6 +8,10 @@
 
 {{decision}}
 
-## Checks
+## Acceptance criteria
 
-- [ ] {{first_deliverable}}
+- {{first_criterion}}
+
+## Verification
+
+- {{first_verification}}
