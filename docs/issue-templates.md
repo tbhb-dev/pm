@@ -4,13 +4,13 @@
 
 Mike Cohn uses *conditions of satisfaction* for acceptance criteria. He writes that they “are specific to a given product backlog item and define what must be true for that particular product backlog item to be considered done.” [Relationship Between Definition of Done and Conditions of Satisfaction](https://www.mountaingoatsoftware.com/agile/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa)
 
-## Issue criteria and evidence
+## Issue checks and evidence
 
-After the title, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context, Acceptance criteria, Verification, and Out of scope. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. A Task has only a title and Verification.
+After the title, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context, Checks, Verification, and Out of scope. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. A Task has only a title and Verification.
 
-Write one observable outcome per acceptance criterion. Verification names the evidence for the criteria. An evidence item can cover multiple criteria if the reader can tell which ones it proves.
+Write one observable outcome per check. Verification names the evidence for the checks. An evidence item can cover multiple checks if the reader can tell which ones it proves.
 
-| Issue type | Acceptance criteria | Verification |
+| Issue type | Checks | Verification |
 | --- | --- | --- |
 | Feature | 2 to 5 | 1 to 3 |
 | Chore | 1 to 3 | 1 to 3 |
@@ -20,7 +20,7 @@ Write one observable outcome per acceptance criterion. Verification names the ev
 | Epic | 1 to 6 | 1 to 3 |
 | Initiative | 1 to 6 | 1 to 3 |
 
-A Spike's criteria describe what the findings must establish for the decision. Epic criteria describe observable parts of a capability, and Initiative criteria describe measurable results.
+A Spike's checks describe what the findings must establish for the decision. Epic checks describe observable parts of a capability, and Initiative checks describe measurable results.
 
 An Initiative has no parent. An Epic requires an Initiative parent, and a Feature requires an Epic parent. A Defect, Chore, or Spike may stand alone or have a parent. A Task requires a parent of any issue type except Task.
 
@@ -38,4 +38,4 @@ Use the imported variant only for the tracker import. It takes an assignee list 
 
 ## Unverified by the schema
 
-The schema checks the format of each parent reference. The kernel needs to fetch the parent to confirm its type. A reviewer still needs to check whether each criterion states one observable outcome, whether evidence covers the criteria, and whether closure meets the Definition of Done.
+The schema checks the format of each parent reference. The kernel needs to fetch the parent to confirm its type. A reviewer still needs to confirm that each check states one observable outcome, the evidence covers the checks, and closure meets the Definition of Done.

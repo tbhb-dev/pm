@@ -8,7 +8,7 @@
 
 {{context}}
 
-## Acceptance criteria
+## Checks
 
 - {{first_criterion}}
 

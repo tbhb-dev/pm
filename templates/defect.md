@@ -12,7 +12,7 @@
 
 1. {{first_step}}
 
-## Acceptance criteria
+## Checks
 
 - {{first_criterion}}
 

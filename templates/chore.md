@@ -4,7 +4,7 @@
 
 {{outcome}}
 
-## Acceptance criteria
+## Checks
 
 - {{first_criterion}}
 

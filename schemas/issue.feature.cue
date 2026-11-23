@@ -4,12 +4,12 @@ package content
 // Load with tools' core.cue, taxonomy.cue and issue.cue, plus issue-sections.cue.
 
 #Hints: feature: {
-	title:                 "Use a role and what it can do, in the form '<Role> can <action>'."
-	outcome:               "State in one sentence what users or agents will be able to do after this ships."
-	context:               "Why this matters and what to know first. Link, don't paste."
-	"acceptance-criteria": "State 2 to 5 observable behaviors the role can use. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
-	verification:          "Give 1 to 3 ways to prove the criteria, such as a demo or a behavior test." + #DoneHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	title:          "Use a role and what it can do, in the form '<Role> can <action>'."
+	outcome:        "State in one sentence what users or agents will be able to do after this ships."
+	context:        "Why this matters and what to know first. Link, don't paste."
+	checks:         "State 2 to 5 observable behaviors the role can use. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
+	verification:   "Give 1 to 3 ways to show the checks pass, such as a demo or a behavior test." + #DoneHint
+	"out-of-scope": "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
 #KernelChecks: titleShape: {visible: =~#FeatureShape, ...}
@@ -38,7 +38,7 @@ package content
 		source: characters: <=2000
 	}
 
-	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope"]
+	_order: ["title", "outcome", "context", "checks", "verification", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #FeatureTitle
@@ -50,7 +50,7 @@ package content
 				codeLines: <=0
 			}
 		}
-		"acceptance-criteria": #AcceptanceCriteriaSection & {metrics: listItems: >=2 & <=5}
+		checks: #ChecksSection & {metrics: listItems: >=2 & <=5}
 		verification: #VerificationSection
 		context: #IssueSection & {
 			heading: "Context"

@@ -12,8 +12,8 @@ package content
 	}
 }
 
-#AcceptanceCriteriaSection: #IssueEvidenceSection & {
-	heading: "Acceptance criteria"
+#ChecksSection: #IssueEvidenceSection & {
+	heading: "Checks"
 	content: [...(#BlankLine | #List & {items: [...#Criterion]})]
 }
 

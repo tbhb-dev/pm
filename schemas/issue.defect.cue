@@ -9,14 +9,14 @@ import (
 // Load with tools' core.cue, taxonomy.cue and issue.cue, plus issue-sections.cue.
 
 #Hints: defect: {
-	title:                 "Use '<Thing> <does wrong> when <condition>' to name the failure and its trigger."
-	outcome:               "State the expected behavior after the fix in one sentence."
-	context:               "Why this matters and what to know first. Link, don't paste."
-	actual:                "What happens now, with the error text if there is one."
-	reproduction:          "Numbered steps to see the fault."
-	"acceptance-criteria": "State 1 to 3 corrected behaviors under the conditions that triggered the failure. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
-	verification:          "Give 1 to 3 ways to prove the criteria. Include a 'Regression test:' item naming a test that reproduces the failure and proves the fix." + #DoneHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	title:          "Use '<Thing> <does wrong> when <condition>' to name the failure and its trigger."
+	outcome:        "State the expected behavior after the fix in one sentence."
+	context:        "Why this matters and what to know first. Link, don't paste."
+	actual:         "What happens now, with the error text if there is one."
+	reproduction:   "Numbered steps to see the fault."
+	checks:         "State 1 to 3 corrected behaviors under the conditions that triggered the failure. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
+	verification:   "Give 1 to 3 ways to show the checks pass. Include a 'Regression test:' item naming a test that reproduces the failure and proves the fix." + #DoneHint
+	"out-of-scope": "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
 #KernelChecks: titleShape: {visible: =~#DefectShape, ...}
@@ -52,7 +52,7 @@ import (
 		source: characters: <=2200
 	}
 
-	_order: ["title", "outcome", "context", "actual", "reproduction", "acceptance-criteria", "verification", "out-of-scope"]
+	_order: ["title", "outcome", "context", "actual", "reproduction", "checks", "verification", "out-of-scope"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #DefectTitle
@@ -85,7 +85,7 @@ import (
 			}
 			content: [...(#BlankLine | #List & {items: [...#IssueItem & {metrics: visible: words: <=20}]})]
 		}
-		"acceptance-criteria": #AcceptanceCriteriaSection & {metrics: listItems: >=1 & <=3}
+		checks: #ChecksSection & {metrics: listItems: >=1 & <=3}
 		verification: #VerificationSection & {
 			content: [...(#BlankLine | #List & {
 				items: list.MatchN(>=1, #RegressionTest)
