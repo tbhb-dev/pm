@@ -15,4 +15,4 @@ Add a retry button to the report preview. Readers can recover from a temporary l
 
 ## Verification
 
-- The preview loads when readers retry after a temporary error.
+- V1: The preview loads when readers retry after a temporary error.

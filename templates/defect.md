@@ -10,12 +10,12 @@
 
 ## Reproduction
 
-1. {{first_step}}
+- S1: {{first_step}}
 
 ## Acceptance criteria
 
-- {{first_criterion}}
+- AC1: {{first_criterion}}
 
 ## Verification
 
-- Regression test: {{regression_test}}
+- V1: Regression test: {{regression_test}}

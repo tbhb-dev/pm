@@ -7,8 +7,8 @@ package content
 	title:                 "Name the capability as a noun phrase."
 	outcome:               "State in one sentence what will be true when every sub-issue is done."
 	context:               "Why this matters and what to know first. Link, don't paste."
-	"acceptance-criteria": "State 1 to 6 observable parts of the capability that must be present. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
-	verification:          "Give 1 to 3 ways to prove the criteria, such as an integrated demo or a capability read." + #DoneHint
+	"acceptance-criteria": "State 1 to 6 observable parts of the capability that must be present." + #CriteriaItemHint
+	verification:          "Give 1 to 3 ways to prove the criteria, such as an integrated demo or a capability read." + #VerificationItemHint
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 

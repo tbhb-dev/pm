@@ -7,7 +7,7 @@ package content
 	title:        "Start with an imperative verb that names the work."
 	parent:       "Use the reference for the issue this work subdivides. The parent can be any issue type except Task."
 	description:  "Explain what the work is and why it matters in a few sentences."
-	verification: "Give 1 to 3 ways to prove the task is complete." + #DoneHint
+	verification: "Give 1 to 3 ways to prove the task is complete." + #VerificationItemHint
 }
 
 #KernelChecks: {

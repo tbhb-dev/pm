@@ -8,7 +8,9 @@ Mike Cohn uses *conditions of satisfaction* for acceptance criteria. He writes t
 
 For most issue types, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context, Acceptance criteria, Verification, and Out of scope, as applicable. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. Chores list their results in Verification. A Task starts with Description and ends with Verification.
 
-Use numbered steps for Reproduction, or describe the observed conditions in one paragraph if the steps are unknown.
+Write Reproduction steps as bullets, or describe the observed conditions in one paragraph if the steps are unknown.
+
+Start each list item with its ID, a colon, and a space, as in `- AC1: The preview opens`. Use `AC` for acceptance criteria, `V` for verification, and `S` for reproduction steps. Reserve `O` for a decision options list if a template adds one. Prefixes apply within each template. Start each list at 1 and count up by one, without leading zeros.
 
 For issues with acceptance criteria, write one observable outcome per criterion and name the evidence in Verification. An evidence item can cover multiple criteria if the reader can tell which ones it proves.
 
@@ -22,6 +24,8 @@ For issues with acceptance criteria, write one observable outcome per criterion 
 | Research | — | 1 |
 | Epic | 1 to 6 | 1 to 3 |
 | Initiative | 1 to 6 | 1 to 3 |
+
+Each criterion and verification item has 2 to 20 visible words, including its ID. The ID leaves room for 1 to 19 words of text. The Defect label `Regression test:` takes two of those words. Write 1 to 6 Reproduction steps with up to 20 visible words per step, including the ID.
 
 A Spike's criteria describe what the findings must establish for the decision. Epic criteria describe observable parts of a capability, and Initiative criteria describe measurable results.
 

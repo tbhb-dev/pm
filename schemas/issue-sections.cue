@@ -1,5 +1,7 @@
 package content
 
+import "strings"
+
 // Mirrors the shared taxonomy's #Source. Identical definitions unify, so the shared copy can arrive later.
 #Source: "Import"
 
@@ -23,6 +25,24 @@ package content
 #IssueBodySection: #IssueSection & {
 	visible: !~#NoProvenance
 	source:  !~#NoWikilink
+	metrics: orderedLists: 0
+}
+
+// Match each item's visible ID against its one-based position in the list.
+#_PrefixedList: #List & {
+	_prefix: string
+	style:   "unordered"
+	items: [...#ListItem]
+	items: [for index, _ in items {
+		{visible: =~"^\(_prefix)\(index+1): \\S", ...}
+	}]
+}
+
+// Apply the CI gate rule to the words after the ID.
+#_EvidenceText: {
+	visible:      string
+	_description: strings.SplitN(visible, ": ", 2)[1] & !~#CIRestatement
+	...
 }
 
 // Shared section layout for issue variants. Item constraints come from tools.
@@ -36,13 +56,20 @@ package content
 
 #AcceptanceCriteriaSection: #IssueEvidenceSection & {
 	heading: "Acceptance criteria"
-	content: [...(#BlankLine | #List & {items: [...#Criterion]})]
+	content: [...(#BlankLine | #_PrefixedList & {
+		_prefix: "AC"
+		items: [...(#Criterion & #_EvidenceText)]
+	})]
 }
 
 #VerificationSection: #IssueEvidenceSection & {
 	heading: "Verification"
 	metrics: listItems: >=1 & <=3
-	content: [...(#BlankLine | #List & {items: [...#VerificationItem]})]
+	content: [...(#BlankLine | #_PrefixedList & {
+		_prefix: "V"
+		items: [...(#VerificationItem & #_EvidenceText)]
+	})]
 }
 
-#DoneHint: " The Definition of Done requires evidence on the issue before closing. Use ci_enforced with a reference to each gate CI already checks."
+#CriteriaItemHint:     " Use bullets starting with 'AC1: ' and count up by one. Write one outcome per item in 2 to 20 words including the ID. Keep CI gate references in Verification."
+#VerificationItemHint: " Use bullets starting with 'V1: ' and count up by one. Use 2 to 20 words per item including the ID. The Definition of Done requires evidence on the issue before closing. Use ci_enforced with a reference to each gate CI already checks."

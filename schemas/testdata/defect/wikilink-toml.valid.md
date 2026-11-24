@@ -24,8 +24,8 @@ The preview froze on the monthly report after a period of inactivity.
 
 ## Acceptance criteria
 
-- The preview responds when the monthly report opens.
+- AC1: The preview responds when the monthly report opens.
 
 ## Verification
 
-- Regression test: Check that the monthly report preview responds.
+- V1: Regression test: Check that the monthly report preview responds.

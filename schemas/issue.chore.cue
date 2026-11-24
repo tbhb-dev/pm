@@ -7,7 +7,7 @@ package content
 	title:          "Start with an imperative verb that names the upkeep."
 	outcome:        "State in one sentence what will be true when the upkeep is finished."
 	context:        "Why this matters and what to know first. Link, don't paste."
-	verification:   "State 1 to 3 observable results of the upkeep, such as a configuration read or a command with its expected result." + #DoneHint
+	verification:   "State 1 to 3 observable results of the upkeep, such as a configuration read or a command with its expected result." + #VerificationItemHint
 	"out-of-scope": "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
