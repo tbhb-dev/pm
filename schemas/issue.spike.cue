@@ -26,7 +26,6 @@ package content
 		fields: close({
 			"work-type": #WorkType
 			priority?:   #Priority
-			timebox:     #Timebox
 			source?:     #Source
 		})
 		assignees: [...string]

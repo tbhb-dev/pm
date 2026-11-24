@@ -1,7 +1,7 @@
 package content
 
 // Research issue. Template: templates/research.md (starting text only).
-// Research is an investigation whose deliverable is a written report, with no build or experiment, while a Spike is a time-boxed experiment.
+// Research is an investigation whose deliverable is a written report, with no build or experiment, while a Spike is an experiment.
 // Load with tools' core.cue, taxonomy.cue and issue.cue, plus issue-sections.cue.
 
 #Hints: research: {
@@ -23,11 +23,9 @@ package content
 		// kernel turns these into labels. Priority is a field, never a label.
 		area:  #AreaLabel
 		role?: #RoleLabel
-		// Time box is a field, never a section.
 		fields: close({
 			priority?: #Priority
 			source?:   #Source
-			timebox:   #Timebox
 		})
 		assignees: [...string]
 		// An Epic, an Initiative, or none. The schema checks the reference format only.
