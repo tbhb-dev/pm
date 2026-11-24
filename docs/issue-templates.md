@@ -35,6 +35,8 @@ For this repository, close completed work with evidence on the issue, such as a 
 
 The issue variants load the tools schemas alongside the local definitions in `schemas/issue-sections.cue`. The shared item rules require 2 to 20 visible words and reject standalone restatements such as “Tests pass.” [Shared schemas](https://github.com/tbhb-dev/tools/tree/5192863b/schemas)
 
+Use `source` for provenance because issue body sections outside the imported variant refuse provenance sentences and can refuse hyphenated wikilinks even in code, while slugs without hyphens pass.
+
 The templates render required sections from supplied keys. Insert optional sections in the order above when there is text for them, since the renderer raises `KeyError` for an absent key.
 
 The shared title rules cap length and reject ticket prefixes. A Spike title must end with a question mark. Use an outcome for Initiative and a capability noun phrase for Epic. Feature uses `<Role> can <action>`, Task and Chore start with an imperative verb, and Defect uses `<Thing> <does wrong> when <condition>`. The kernel can evaluate `#KernelChecks.titleShape` separately to warn about phrasing.

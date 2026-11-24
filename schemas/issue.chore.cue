@@ -41,7 +41,7 @@ package content
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #ChoreTitle
-		outcome: #IssueSection & {
+		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {
 				visible: words:     >=4 & <=40
@@ -50,7 +50,7 @@ package content
 			}
 		}
 		verification: #VerificationSection
-		context?: #IssueSection & {
+		context?: #IssueBodySection & {
 			heading: "Context"
 			metrics: {
 				visible: words:     <=60
@@ -58,7 +58,7 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueSection & {
+		"out-of-scope"?: #IssueBodySection & {
 			heading: "Out of scope"
 			metrics: {
 				visible: words:     >=3 & <=30
