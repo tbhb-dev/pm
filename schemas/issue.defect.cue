@@ -13,7 +13,7 @@ import (
 	outcome:               "State the expected behavior after the fix in one sentence."
 	context:               "Why this matters and what to know first. Link, don't paste."
 	actual:                "What happens now, with the error text if there is one."
-	reproduction:          "Numbered steps to see the fault."
+	reproduction:          "Give numbered steps to see the fault, or describe the observed conditions in one paragraph if the steps are unknown."
 	"acceptance-criteria": "State 1 to 3 corrected behaviors under the conditions that triggered the failure. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
 	verification:          "Give 1 to 3 ways to prove the criteria. Include a 'Regression test:' item naming a test that reproduces the failure and proves the fix." + #DoneHint
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
@@ -77,14 +77,23 @@ import (
 			metrics: {
 				visible: words:     >=3 & <=60
 				source: characters: <=480
-				codeLines:      <=10
+				codeLines: <=10
+			}
+		} & ({
+			metrics: {
 				lists:          1
 				listItems:      >=1 & <=6
 				orderedLists:   1
 				unorderedLists: 0
 			}
 			content: [...(#BlankLine | #List & {items: [...#IssueItem & {metrics: visible: words: <=20}]})]
-		}
+		} | {
+			metrics: {
+				paragraphs: 1
+				lists:      0
+			}
+			content: [...(#BlankLine | #Paragraph)]
+		})
 		"acceptance-criteria": #AcceptanceCriteriaSection & {metrics: listItems: >=1 & <=3}
 		verification: #VerificationSection & {
 			content: [...(#BlankLine | #List & {
