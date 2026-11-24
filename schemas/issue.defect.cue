@@ -56,7 +56,7 @@ import (
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #DefectTitle
-		outcome: #IssueSection & {
+		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {
 				visible: words:     >=4 & <=40
@@ -64,7 +64,7 @@ import (
 				codeLines: <=0
 			}
 		}
-		actual: #IssueSection & {
+		actual: #IssueBodySection & {
 			heading: "Actual"
 			metrics: {
 				visible: words:     >=3 & <=40
@@ -72,7 +72,7 @@ import (
 				codeLines: <=10
 			}
 		}
-		reproduction: #IssueSection & {
+		reproduction: #IssueBodySection & {
 			heading: "Reproduction"
 			metrics: {
 				visible: words:     >=3 & <=60
@@ -100,7 +100,7 @@ import (
 				items: list.MatchN(>=1, #RegressionTest)
 			})]
 		}
-		context?: #IssueSection & {
+		context?: #IssueBodySection & {
 			heading: "Context"
 			metrics: {
 				visible: words:     <=80
@@ -108,7 +108,7 @@ import (
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueSection & {
+		"out-of-scope"?: #IssueBodySection & {
 			heading: "Out of scope"
 			metrics: {
 				visible: words:     >=3 & <=30

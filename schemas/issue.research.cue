@@ -40,7 +40,7 @@ package content
 	blockOrder: ["title", "question", "decision", "scope", "deliverable-location", "verification"]
 	blocks: close({
 		title: #SpikeTitle
-		question: #IssueSection & {
+		question: #IssueBodySection & {
 			heading: "Question"
 			metrics: {
 				visible: words:     >=3 & <=40
@@ -49,7 +49,7 @@ package content
 			}
 			visible: =~#"\?$"#
 		}
-		decision: #IssueSection & {
+		decision: #IssueBodySection & {
 			heading: "Decision"
 			metrics: {
 				visible: words:     >=3 & <=30
@@ -57,7 +57,7 @@ package content
 				codeLines: <=0
 			}
 		}
-		scope: #IssueSection & {
+		scope: #IssueBodySection & {
 			heading: "Scope"
 			metrics: {
 				visible: words:     >=3 & <=40
@@ -66,7 +66,7 @@ package content
 			}
 		}
 		// One path or link on one line. The section key follows the heading.
-		"deliverable-location": #IssueSection & {
+		"deliverable-location": #IssueBodySection & {
 			heading: "Deliverable location"
 			metrics: {
 				visible: words:     >=1 & <=20
