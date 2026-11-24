@@ -10,7 +10,7 @@ package content
 	decision:               "The decision or work the report informs."
 	scope:                  "What the investigation covers."
 	"deliverable-location": "Where the report will exist. Give one path or link."
-	verification:           "Keep exactly one item that reads: The report exists at the stated deliverable location. Link the report on the issue before closing."
+	verification:           "Keep exactly one item with the text \"The report exists at the stated deliverable location\" and no trailing period. Link the report on the issue before closing."
 }
 
 #Variant: #Draft & {
