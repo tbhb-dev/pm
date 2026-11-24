@@ -10,8 +10,8 @@
 
 ## Acceptance criteria
 
-- {{first_criterion}}
+- AC1: {{first_criterion}}
 
 ## Verification
 
-- {{first_verification}}
+- V1: {{first_verification}}

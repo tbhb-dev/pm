@@ -11,4 +11,4 @@ parent: owner/repo#53
 
 ## Verification
 
-- The preview loads when readers retry after a temporary error.
+- V1: The preview loads when readers retry after a temporary error.

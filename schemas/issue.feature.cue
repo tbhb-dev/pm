@@ -7,8 +7,8 @@ package content
 	title:                 "Use a role and what it can do, in the form '<Role> can <action>'."
 	outcome:               "State in one sentence what users or agents will be able to do after this ships."
 	context:               "Why this matters and what to know first. Link, don't paste."
-	"acceptance-criteria": "State 2 to 5 observable behaviors the role can use. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
-	verification:          "Give 1 to 3 ways to prove the criteria, such as a demo or a behavior test." + #DoneHint
+	"acceptance-criteria": "State 2 to 5 observable behaviors the role can use." + #CriteriaItemHint
+	verification:          "Give 1 to 3 ways to prove the criteria, such as a demo or a behavior test." + #VerificationItemHint
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 

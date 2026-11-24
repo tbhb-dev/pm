@@ -13,17 +13,17 @@ import (
 	outcome:               "State the expected behavior after the fix in one sentence."
 	context:               "Why this matters and what to know first. Link, don't paste."
 	actual:                "What happens now, with the error text if there is one."
-	reproduction:          "Give numbered steps to see the fault, or describe the observed conditions in one paragraph if the steps are unknown."
-	"acceptance-criteria": "State 1 to 3 corrected behaviors under the conditions that triggered the failure. Use one outcome per item, in 2 to 20 words. Keep CI gate references in Verification."
-	verification:          "Give 1 to 3 ways to prove the criteria. Include a 'Regression test:' item naming a test that reproduces the failure and proves the fix." + #DoneHint
+	reproduction:          "Give 1 to 6 bullet steps starting with 'S1: ' and count up by one. Use up to 20 words per step including the ID. If the steps are unknown, describe the observed conditions in one paragraph."
+	"acceptance-criteria": "State 1 to 3 corrected behaviors under the conditions that triggered the failure." + #CriteriaItemHint
+	verification:          "Give 1 to 3 ways to prove the criteria. After the ID, start one item with 'Regression test:' and name a test that reproduces the failure and proves the fix." + #VerificationItemHint
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
 }
 
 #KernelChecks: titleShape: {visible: =~#DefectShape, ...}
 
 #RegressionTest: {
-	visible:      =~#"^Regression test: \S"#
-	_description: strings.TrimPrefix(visible, "Regression test: ") & !~#CIRestatement
+	visible: =~#"^V[1-9][0-9]*: Regression test: \S"#
+	_test:   strings.SplitN(visible, ": ", 3)[2] & !~#CIRestatement
 	...
 }
 
@@ -81,12 +81,13 @@ import (
 			}
 		} & ({
 			metrics: {
-				lists:          1
-				listItems:      >=1 & <=6
-				orderedLists:   1
-				unorderedLists: 0
+				lists:     1
+				listItems: >=1 & <=6
 			}
-			content: [...(#BlankLine | #List & {items: [...#IssueItem & {metrics: visible: words: <=20}]})]
+			content: [...(#BlankLine | #_PrefixedList & {
+				_prefix: "S"
+				items: [...#IssueItem & {metrics: visible: words: <=20}]
+			})]
 		} | {
 			metrics: {
 				paragraphs: 1
