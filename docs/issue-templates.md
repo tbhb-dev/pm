@@ -17,12 +17,15 @@ Write one observable outcome per acceptance criterion. Verification names the ev
 | Defect | 1 to 3 | 1 to 3, including a `Regression test:` entry |
 | Task | — | 1 to 3 |
 | Spike | 1 to 3 | 1 to 3 |
+| Research | — | 1 |
 | Epic | 1 to 6 | 1 to 3 |
 | Initiative | 1 to 6 | 1 to 3 |
 
 A Spike's criteria describe what the findings must establish for the decision. Epic criteria describe observable parts of a capability, and Initiative criteria describe measurable results.
 
 An Initiative has no parent. An Epic requires an Initiative parent, and a Feature requires an Epic parent. A Defect, Chore, or Spike may stand alone or have a parent. A Task requires a parent of any issue type except Task.
+
+Research is an investigation that delivers a written report, with no build or experiment. A Spike is a time-boxed experiment. After a title that ends with a question mark, a Research issue requires Question, Decision, Scope, Deliverable location, and Verification in that order. Time box is a field. The one Verification item states that the report exists at the stated deliverable location. A Research issue may stand alone or have an Epic or Initiative parent. The draft allows up to 150 visible words and 1,200 source characters.
 
 For this repository, close completed work with evidence on the issue, such as a work note that links to a merged pull request, a result, or a decision. In Verification, use `ci_enforced` with a reference to the continuous integration (CI) workflow or check that covers the outcome. At closure, link to the run that supplies the evidence.
 
