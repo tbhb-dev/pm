@@ -6,6 +6,7 @@ package content
 #Hints: task: {
 	title:        "Start with an imperative verb that names the work."
 	parent:       "Use the reference for the issue this work subdivides. The parent can be any issue type except Task."
+	description:  "Explain what the work is and why it matters in a few sentences."
 	verification: "Give 1 to 3 ways to prove the task is complete." + #DoneHint
 }
 
@@ -32,13 +33,21 @@ package content
 	})
 
 	metrics: {
-		visible: words:     <=80
-		source: characters: <=800
+		visible: words:     <=140
+		source: characters: <=1300
 	}
 
-	blockOrder: ["title", "verification"]
+	blockOrder: ["title", "description", "verification"]
 	blocks: close({
-		title:        #TaskTitle
+		title: #TaskTitle
+		description: #IssueBodySection & {
+			heading: "Description"
+			metrics: {
+				visible: words:     >=8 & <=60
+				source: characters: <=480
+				codeLines: <=0
+			}
+		}
 		verification: #VerificationSection
 	})
 }

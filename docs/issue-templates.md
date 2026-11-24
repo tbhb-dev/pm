@@ -6,7 +6,7 @@ Mike Cohn uses *conditions of satisfaction* for acceptance criteria. He writes t
 
 ## Issue criteria and evidence
 
-After the title, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context, Acceptance criteria, Verification, and Out of scope, as applicable. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. Chores and Tasks list their results in Verification. A Task has only a title and Verification.
+For most issue types, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context, Acceptance criteria, Verification, and Out of scope, as applicable. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. Chores list their results in Verification. A Task starts with Description and ends with Verification.
 
 Use numbered steps for Reproduction, or describe the observed conditions in one paragraph if the steps are unknown.
 
