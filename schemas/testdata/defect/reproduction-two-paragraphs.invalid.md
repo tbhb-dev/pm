@@ -12,7 +12,7 @@ The preview stops responding.
 
 The preview froze on the monthly report after a period of inactivity.
 
-The report showed the previous month.
+The report displayed the previous month.
 
 ## Acceptance criteria
 

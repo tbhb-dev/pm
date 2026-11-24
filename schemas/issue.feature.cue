@@ -42,7 +42,7 @@ package content
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #FeatureTitle
-		outcome: #IssueSection & {
+		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {
 				visible: words:     >=4 & <=40
@@ -52,7 +52,7 @@ package content
 		}
 		"acceptance-criteria": #AcceptanceCriteriaSection & {metrics: listItems: >=2 & <=5}
 		verification: #VerificationSection
-		context: #IssueSection & {
+		context: #IssueBodySection & {
 			heading: "Context"
 			metrics: {
 				visible: words:     >=4 & <=80
@@ -60,7 +60,7 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueSection & {
+		"out-of-scope"?: #IssueBodySection & {
 			heading: "Out of scope"
 			metrics: {
 				visible: words:     >=3 & <=30
