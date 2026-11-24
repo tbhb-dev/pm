@@ -146,6 +146,8 @@ unvalidated
 urlmatch
 wbin
 webp
+wikilink
+wikilinks
 worktrees
 wronly
 xhigh
