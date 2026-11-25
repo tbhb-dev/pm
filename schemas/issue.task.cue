@@ -34,7 +34,7 @@ package content
 	})
 
 	metrics: {
-		visible: words:     <=140
+		visible: words:     <=160
 		source: characters: <=1300
 	}
 
