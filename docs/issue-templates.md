@@ -25,15 +25,15 @@ For issues with acceptance criteria, write one observable outcome per criterion 
 | Epic | 1 to 6 | 1 to 3 | 1 to 3 |
 | Initiative | 1 to 6 | 1 to 3 | 1 to 3 |
 
-Out of scope names what the issue deliberately does not cover. Write 1 to 3 bullets after Verification, without ID prefixes. Each item allows 1 to 20 visible words so a single `- None.` can record a deliberate decision that nothing is out of scope. Other items normally use 3 to 20 words. The section allows up to 30 visible words and 240 source characters.
+Out of scope names what the issue deliberately does not cover. Write 1 to 3 bullets of 3 to 20 visible words each after Verification, without ID prefixes, or write a lone `- None.` after deciding on purpose that nothing is out of scope. The schema refuses `None.` beside other items and refuses a second `None.` item. The section allows up to 60 visible words and 480 source characters.
 
-Each criterion and verification item has 2 to 20 visible words, including its ID. The ID leaves room for 1 to 19 words of text. The Defect label `Regression test:` takes two of those words. Write 1 to 6 Reproduction steps with up to 20 visible words per step, including the ID. The Reproduction section allows up to 140 visible words and 1,100 source characters.
+Each criterion and verification item has 2 to 20 visible words, including its ID. The ID leaves room for 1 to 19 words of text. The Defect label `Regression test:` takes two of those words. Write 1 to 6 Reproduction steps with up to 20 visible words per step, including the ID. The Reproduction section allows up to 140 visible words and 1,100 source characters, and a Defect draft allows up to 260 visible words and 2,200 source characters.
 
 A Spike's criteria describe what the findings must establish for the decision. Epic criteria describe observable parts of a capability, and Initiative criteria describe measurable results.
 
-An Initiative has no parent. An Epic requires an Initiative parent, and a Feature requires an Epic parent. A Defect, Chore, or Spike may stand alone or have a parent. A Task requires a parent of any issue type except Task.
+An Initiative has no parent. An Epic requires an Initiative parent, and a Feature requires an Epic parent. A Defect, Chore, or Spike may stand alone or have a parent. A Task requires a parent of any issue type except Task, and its draft allows up to 160 visible words and 1,300 source characters.
 
-Research is an investigation that delivers a written report, with no build or experiment. A Spike is an experiment. After a title that ends with a question mark, a Research issue requires Question, Decision, Scope, Deliverable location, Verification, and Out of scope in that order. The one Verification item states that the report exists at the stated deliverable location. A Research issue may stand alone or have an Epic or Initiative parent. The draft allows up to 150 visible words and 1,200 source characters.
+Research is an investigation that delivers a written report, with no build or experiment. A Spike is an experiment. After a title that ends with a question mark, a Research issue requires Question, Decision, Scope, Deliverable location, Verification, and Out of scope in that order. The one Verification item states that the report exists at the stated deliverable location. A Research issue may stand alone or have an Epic or Initiative parent. The draft allows up to 170 visible words and 1,200 source characters.
 
 For this repository, close completed work with evidence on the issue, such as a work note that links to a merged pull request, a result, or a decision. In Verification, use `ci_enforced` with a reference to the continuous integration (CI) workflow or check that covers the outcome. At closure, link to the run that supplies the evidence.
 

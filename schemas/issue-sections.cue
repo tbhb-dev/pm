@@ -78,8 +78,8 @@ import "strings"
 #OutOfScopeSection: #IssueBodySection & {
 	heading: "Out of scope"
 	metrics: {
-		visible: words:     >=1 & <=30
-		source: characters: <=240
+		visible: words:     >=1 & <=60
+		source: characters: <=480
 		lists:            1
 		listItems:        >=1 & <=3
 		codeLines:        0
@@ -87,8 +87,8 @@ import "strings"
 	}
 	content: [...(#BlankLine | #List & {
 		style: "unordered"
-		items: [...#IssueItem & {metrics: visible: words: >=1 & <=20}]
+		items: [#IssueItem & {visible: "None."}] | [...#IssueItem & {metrics: visible: words: >=3 & <=20}]
 	})]
 }
 
-#OutOfScopeHint: "Name what this issue deliberately does not cover, one bullet each. If nothing is out of scope, write 'None.' after deciding that on purpose."
+#OutOfScopeHint: "Name what this issue deliberately does not cover, one bullet each. Use 1 to 3 items of 3 to 20 words each, or a lone 'None.' after deciding that on purpose."

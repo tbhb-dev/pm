@@ -48,7 +48,7 @@ import (
 	})
 
 	metrics: {
-		visible: words:     <=220
+		visible: words:     <=260
 		source: characters: <=2200
 	}
 
