@@ -22,7 +22,8 @@ The preview stops responding.
 
 ## Reproduction
 
-The preview froze on the monthly report after a period of inactivity.
+- S1: Open the monthly report.
+- S2: Select the preview tab.
 
 ## Acceptance criteria
 

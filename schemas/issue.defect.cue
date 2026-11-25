@@ -13,7 +13,7 @@ import (
 	outcome:               "State the expected behavior after the fix in one sentence."
 	context:               "Why this matters and what to know first. Link, don't paste."
 	actual:                "What happens now, with the error text if there is one."
-	reproduction:          "Give 1 to 6 bullet steps starting with 'S1: ' and count up by one. Use up to 20 words per step including the ID. If the steps are unknown, describe the observed conditions in one paragraph."
+	reproduction:          "Give 1 to 6 bullet steps starting with 'S1: ' and count up by one. Use up to 20 words per step including the ID. A fault whose steps are unknown belongs in a Task to find a reproduction, not in a Defect."
 	"acceptance-criteria": "State 1 to 3 corrected behaviors under the conditions that triggered the failure." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria. After the ID, start one item with 'Regression test:' and name a test that reproduces the failure and proves the fix." + #VerificationItemHint
 	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
@@ -78,9 +78,6 @@ import (
 				visible: words:     >=3 & <=60
 				source: characters: <=480
 				codeLines: <=10
-			}
-		} & ({
-			metrics: {
 				lists:     1
 				listItems: >=1 & <=6
 			}
@@ -88,13 +85,7 @@ import (
 				_prefix: "S"
 				items: [...#IssueItem & {metrics: visible: words: <=20}]
 			})]
-		} | {
-			metrics: {
-				paragraphs: 1
-				lists:      0
-			}
-			content: [...(#BlankLine | #Paragraph)]
-		})
+		}
 		"acceptance-criteria": #AcceptanceCriteriaSection & {metrics: listItems: >=1 & <=3}
 		verification: #VerificationSection & {
 			content: [...(#BlankLine | #List & {

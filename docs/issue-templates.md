@@ -8,7 +8,7 @@ Mike Cohn uses *conditions of satisfaction* for acceptance criteria. He writes t
 
 For most issue types, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context, Acceptance criteria, Verification, and Out of scope, as applicable. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. Chores list their results in Verification. A Task starts with Description and ends with Verification.
 
-Write Reproduction steps as bullets, or describe the observed conditions in one paragraph if the steps are unknown.
+Write 1 to 6 Reproduction steps as bullets starting with `S1:` followed by a space and count up by one. Use up to 20 visible words per step, including the ID. A fault whose steps are unknown belongs in a Task to find a reproduction, not in a Defect.
 
 Start each list item with its ID, a colon, and a space, as in `- AC1: The preview opens`. Use `AC` for acceptance criteria, `V` for verification, and `S` for reproduction steps. Reserve `O` for a decision options list if a template adds one. Prefixes apply within each template. Start each list at 1 and count up by one, without leading zeros.
 
