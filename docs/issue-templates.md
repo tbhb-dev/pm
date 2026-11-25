@@ -25,7 +25,7 @@ For issues with acceptance criteria, write one observable outcome per criterion 
 | Epic | 1 to 6 | 1 to 3 |
 | Initiative | 1 to 6 | 1 to 3 |
 
-Each criterion and verification item has 2 to 20 visible words, including its ID. The ID leaves room for 1 to 19 words of text. The Defect label `Regression test:` takes two of those words. Write 1 to 6 Reproduction steps with up to 20 visible words per step, including the ID.
+Each criterion and verification item has 2 to 20 visible words, including its ID. The ID leaves room for 1 to 19 words of text. The Defect label `Regression test:` takes two of those words. Write 1 to 6 Reproduction steps with up to 20 visible words per step, including the ID. The Reproduction section allows up to 140 visible words and 1,100 source characters.
 
 A Spike's criteria describe what the findings must establish for the decision. Epic criteria describe observable parts of a capability, and Initiative criteria describe measurable results.
 

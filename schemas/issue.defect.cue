@@ -75,8 +75,8 @@ import (
 		reproduction: #IssueBodySection & {
 			heading: "Reproduction"
 			metrics: {
-				visible: words:     >=3 & <=60
-				source: characters: <=480
+				visible: words:     >=3 & <=140
+				source: characters: <=1100
 				codeLines: <=10
 				lists:     1
 				listItems: >=1 & <=6
