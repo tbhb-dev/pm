@@ -4,10 +4,11 @@ package content
 // Load with tools' core.cue, taxonomy.cue and issue.cue, plus issue-sections.cue.
 
 #Hints: task: {
-	title:        "Start with an imperative verb that names the work."
-	parent:       "Use the reference for the issue this work subdivides. The parent can be any issue type except Task."
-	description:  "Explain what the work is and why it matters in a few sentences."
-	verification: "Give 1 to 3 ways to prove the task is complete." + #VerificationItemHint
+	title:          "Start with an imperative verb that names the work."
+	parent:         "Use the reference for the issue this work subdivides. The parent can be any issue type except Task."
+	description:    "Explain what the work is and why it matters in a few sentences."
+	verification:   "Give 1 to 3 ways to prove the task is complete." + #VerificationItemHint
+	"out-of-scope": #OutOfScopeHint
 }
 
 #KernelChecks: {
@@ -37,7 +38,7 @@ package content
 		source: characters: <=1300
 	}
 
-	blockOrder: ["title", "description", "verification"]
+	blockOrder: ["title", "description", "verification", "out-of-scope"]
 	blocks: close({
 		title: #TaskTitle
 		description: #IssueBodySection & {
@@ -48,6 +49,7 @@ package content
 				codeLines: <=0
 			}
 		}
-		verification: #VerificationSection
+		verification:   #VerificationSection
+		"out-of-scope": #OutOfScopeSection
 	})
 }

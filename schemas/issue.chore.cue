@@ -8,7 +8,7 @@ package content
 	outcome:        "State in one sentence what will be true when the upkeep is finished."
 	context:        "Why this matters and what to know first. Link, don't paste."
 	verification:   "State 1 to 3 observable results of the upkeep, such as a configuration read or a command with its expected result." + #VerificationItemHint
-	"out-of-scope": "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope": #OutOfScopeHint
 }
 
 #KernelChecks: titleShape: {visible: =~#TaskShape, ...}
@@ -58,13 +58,6 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueBodySection & {
-			heading: "Out of scope"
-			metrics: {
-				visible: words:     >=3 & <=30
-				source: characters: <=240
-				codeLines: <=0
-			}
-		}
+		"out-of-scope": #OutOfScopeSection
 	})
 }

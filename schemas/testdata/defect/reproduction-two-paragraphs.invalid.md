@@ -21,3 +21,7 @@ The report showed the previous month.
 ## Verification
 
 - V1: Regression test: Check that the monthly report preview responds.
+
+## Out of scope
+
+- Changing the report layout.

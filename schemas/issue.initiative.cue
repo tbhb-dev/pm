@@ -9,7 +9,7 @@ package content
 	context:               "Why this matters and what to know first. Link, don't paste."
 	"acceptance-criteria": "State 1 to 6 observable results or measures that indicate the outcome was reached." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a measured result or a decision record." + #VerificationItemHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
 #Variant: #Draft & {
@@ -58,13 +58,6 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueBodySection & {
-			heading: "Out of scope"
-			metrics: {
-				visible: words:     >=3 & <=30
-				source: characters: <=240
-				codeLines: <=0
-			}
-		}
+		"out-of-scope": #OutOfScopeSection
 	})
 }

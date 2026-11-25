@@ -16,3 +16,7 @@ Add a report preview retry button.
 ## Verification
 
 - V1: The preview loads when readers retry after a temporary error.
+
+## Out of scope
+
+- Changing the report layout.

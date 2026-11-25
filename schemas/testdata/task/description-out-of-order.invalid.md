@@ -16,3 +16,7 @@ parent: owner/repo#53
 ## Description
 
 Add a retry button to the report preview. Readers can recover from a temporary loading error without leaving the report.
+
+## Out of scope
+
+- Changing the report layout.

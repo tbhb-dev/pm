@@ -9,7 +9,7 @@ package content
 	context:               "Why this matters and what to know first. Link, don't paste."
 	"acceptance-criteria": "State 1 to 6 observable parts of the capability that must be present." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as an integrated demo or a capability read." + #VerificationItemHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
 #KernelChecks: titleShape: {visible: !~#EpicShapeBan, ...}
@@ -60,13 +60,6 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueBodySection & {
-			heading: "Out of scope"
-			metrics: {
-				visible: words:     >=3 & <=30
-				source: characters: <=240
-				codeLines: <=0
-			}
-		}
+		"out-of-scope": #OutOfScopeSection
 	})
 }

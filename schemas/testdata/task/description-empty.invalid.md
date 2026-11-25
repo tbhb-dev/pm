@@ -14,3 +14,7 @@ parent: owner/repo#53
 ## Verification
 
 - V1: The preview loads when readers retry after a temporary error.
+
+## Out of scope
+
+- Changing the report layout.

@@ -19,3 +19,7 @@
 ## Verification
 
 - V1: Regression test: {{regression_test}}
+
+## Out of scope
+
+- {{first_out_of_scope}}

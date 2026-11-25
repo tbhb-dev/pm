@@ -10,7 +10,7 @@ package content
 	decision:              "The decision the answer unblocks."
 	"acceptance-criteria": "State 1 to 3 observable conditions for answering the question and informing the decision." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a findings record or a decision link." + #VerificationItemHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
 #Variant: #Draft & {
@@ -68,13 +68,6 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueBodySection & {
-			heading: "Out of scope"
-			metrics: {
-				visible: words:     >=3 & <=30
-				source: characters: <=240
-				codeLines: <=0
-			}
-		}
+		"out-of-scope": #OutOfScopeSection
 	})
 }
