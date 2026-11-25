@@ -28,3 +28,7 @@ The preview stops responding.
 
 - V1: Regression test: Check that the monthly report preview responds.
 - V2: The merged change from PR #12 is on the default branch.
+
+## Out of scope
+
+- Changing the report layout.

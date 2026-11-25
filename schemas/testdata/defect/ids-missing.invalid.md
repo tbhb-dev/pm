@@ -22,3 +22,7 @@ The preview stops responding.
 
 - Open the report and confirm the preview tab responds.
 - V2: Regression test: Check that the monthly report preview responds.
+
+## Out of scope
+
+- Changing the report layout.

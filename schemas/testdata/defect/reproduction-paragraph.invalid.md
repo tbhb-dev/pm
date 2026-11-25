@@ -19,3 +19,7 @@ The preview froze on the monthly report after a period of inactivity.
 ## Verification
 
 - V1: Regression test: Check that the monthly report preview responds.
+
+## Out of scope
+
+- Changing the report layout.

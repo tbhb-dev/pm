@@ -30,3 +30,7 @@ The preview stops responding.
 ## Verification
 
 - V1: Regression test: Check that the monthly report preview responds.
+
+## Out of scope
+
+- Changing the report layout.

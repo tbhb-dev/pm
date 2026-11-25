@@ -11,6 +11,7 @@ package content
 	scope:                  "What the investigation covers."
 	"deliverable-location": "Where the report will exist. Give one path or link."
 	verification:           "Keep the bullet 'V1: The report exists at the stated deliverable location' without a trailing period. Link the report on the issue before closing."
+	"out-of-scope":         #OutOfScopeHint
 }
 
 #Variant: #Draft & {
@@ -37,7 +38,7 @@ package content
 		source: characters: <=1200
 	}
 
-	blockOrder: ["title", "question", "decision", "scope", "deliverable-location", "verification"]
+	blockOrder: ["title", "question", "decision", "scope", "deliverable-location", "verification", "out-of-scope"]
 	blocks: close({
 		title: #SpikeTitle
 		question: #IssueBodySection & {
@@ -81,5 +82,6 @@ package content
 			metrics: listItems: 1
 			visible: "V1: The report exists at the stated deliverable location"
 		}
+		"out-of-scope": #OutOfScopeSection
 	})
 }

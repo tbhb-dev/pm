@@ -9,7 +9,7 @@ package content
 	context:               "Why this matters and what to know first. Link, don't paste."
 	"acceptance-criteria": "State 2 to 5 observable behaviors the role can use." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a demo or a behavior test." + #VerificationItemHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
 #KernelChecks: titleShape: {visible: =~#FeatureShape, ...}
@@ -60,13 +60,6 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueBodySection & {
-			heading: "Out of scope"
-			metrics: {
-				visible: words:     >=3 & <=30
-				source: characters: <=240
-				codeLines: <=0
-			}
-		}
+		"out-of-scope": #OutOfScopeSection
 	})
 }

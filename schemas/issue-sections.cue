@@ -73,3 +73,22 @@ import "strings"
 
 #CriteriaItemHint:     " Use bullets starting with 'AC1: ' and count up by one. Write one outcome per item in 2 to 20 words including the ID. Keep CI gate references in Verification."
 #VerificationItemHint: " Use bullets starting with 'V1: ' and count up by one. Use 2 to 20 words per item including the ID. The Definition of Done requires evidence on the issue before closing. Use ci_enforced with a reference to each gate CI already checks."
+
+// Scope boundaries use ordinary bullets, independent of criteria and evidence IDs.
+#OutOfScopeSection: #IssueBodySection & {
+	heading: "Out of scope"
+	metrics: {
+		visible: words:     >=1 & <=30
+		source: characters: <=240
+		lists:            1
+		listItems:        >=1 & <=3
+		codeLines:        0
+		fencedCodeBlocks: 0
+	}
+	content: [...(#BlankLine | #List & {
+		style: "unordered"
+		items: [...#IssueItem & {metrics: visible: words: >=1 & <=20}]
+	})]
+}
+
+#OutOfScopeHint: "Name what this issue deliberately does not cover, one bullet each. If nothing is out of scope, write 'None.' after deciding that on purpose."

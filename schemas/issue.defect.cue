@@ -16,7 +16,7 @@ import (
 	reproduction:          "Give 1 to 6 bullet steps starting with 'S1: ' and count up by one. Use up to 20 words per step including the ID. A fault whose steps are unknown belongs in a Task to find a reproduction, not in a Defect."
 	"acceptance-criteria": "State 1 to 3 corrected behaviors under the conditions that triggered the failure." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria. After the ID, start one item with 'Regression test:' and name a test that reproduces the failure and proves the fix." + #VerificationItemHint
-	"out-of-scope":        "What this issue won't do. Leave the section out when there is nothing to say."
+	"out-of-scope":        #OutOfScopeHint
 }
 
 #KernelChecks: titleShape: {visible: =~#DefectShape, ...}
@@ -100,13 +100,6 @@ import (
 				codeLines: <=10
 			}
 		}
-		"out-of-scope"?: #IssueBodySection & {
-			heading: "Out of scope"
-			metrics: {
-				visible: words:     >=3 & <=30
-				source: characters: <=240
-				codeLines: <=0
-			}
-		}
+		"out-of-scope": #OutOfScopeSection
 	})
 }
