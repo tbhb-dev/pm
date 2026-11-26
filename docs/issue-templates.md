@@ -61,7 +61,7 @@ Put pull requests, commits, discussions, and web pages in an optional `## Relate
 - https://example.org/reports: Reader guide
 ```
 
-The schema refuses GitHub issue URLs in Related. A bare `owner/repo#N` can refer to either kind of GitHub object, so use it in Related only for a pull request. Keep the labels `Related work:` and `Related:` out of prose at the start of a line or sentence. Use inline code or a code block when quoting a literal label.
+The schema refuses GitHub issue URLs in Related. A bare `owner/repo#N` can refer to either kind of GitHub object, so use it in Related only for a pull request.
 
 ## Schema and rendering
 
@@ -79,4 +79,4 @@ Use the imported variant only for the tracker import. It takes an assignee list 
 
 The schema checks the format of each parent reference. The kernel needs to fetch the parent to confirm its type. A reviewer still needs to check whether each criterion states one observable outcome, whether evidence covers the criteria, and whether closure meets the Definition of Done.
 
-When reviewing a draft, ask for an Out of scope section only if the work has exclusions worth recording. Check that Related follows Verification when the draft has no exclusions.
+When reviewing a draft, ask for an Out of scope section only if the work has exclusions worth recording. Check that Related follows Verification when the draft has no exclusions. Ask authors to move prose labeled `Related work:` or `Related:` to front matter or the Related section as appropriate. Authors can quote literal labels using inline code or a code block.

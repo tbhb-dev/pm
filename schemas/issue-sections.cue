@@ -25,68 +25,9 @@ import (
 // Source preserves backticks. Require a hyphen to allow TOML array headers.
 #NoWikilink: #"(?:^|[^\pL\pM\pN_`])\[\[[a-z][a-z0-9]*(?:-[a-z0-9]+)+(?:[|#][^\]\r\n]+)?\]\]"#
 
-#ProseRelation: #"(?i)(?:^|[\r\n]|[.!?]["'”’)\]]*[ \t]+)[ \t]*(?:(?:AC|V)[1-9][0-9]*: )?Related(?:[ \t]+work)?:"#
-
-// The normalized text flattens inline code. Use the paragraph source when
-// a code span could account for a relation label in the visible text.
-#RelationText: {
-	source:  string
-	visible: string
-	if visible =~ #ProseRelation {
-		_parts: [for fragment in regexp.FindAll(#"[^\x60]*(?:\x60+|$)"#, source, -1) {
-			let Text = strings.TrimRight(fragment, "`")
-			{text: Text, ticks: strings.TrimPrefix(fragment, Text)}
-		}]
-		// Pair backtick runs of equal length, then skip through the closing run.
-		_scan: [{end: -1, text: "", code: false}, for index, part in _parts {
-			let PreviousEnd = _scan[index].end
-			if index <= PreviousEnd {
-				{end: PreviousEnd, text: "", code: false}
-			}
-			if index > PreviousEnd {
-				// An odd number of backslashes escapes the first opening backtick.
-				let Escaped = part.text =~ #"(?:^|[^\\])(?:\\\\)*\\$"#
-				_open: string
-				if Escaped {
-					_open: strings.TrimPrefix(part.ticks, "`")
-				}
-				if !Escaped {
-					_open: part.ticks
-				}
-				_ends: [for end, candidate in _parts if end > index && _open != "" && candidate.ticks == _open {end}]
-				if len(_ends) == 0 {
-					{end: index, text: part.text + part.ticks, code: false}
-				}
-				if len(_ends) > 0 {
-					{end: _ends[0], text: part.text + "`", code: true}
-				}
-			}
-		}]
-		_code: [for segment in _scan if segment.code {segment}]
-		if len(_code) == 0 {
-			visible: !~#ProseRelation
-		}
-		if len(_code) > 0 {
-			_text: strings.Join([for segment in _scan {segment.text}], "")
-			// Paragraph source can include the title or list marker.
-			_prose: regexp.ReplaceAll(#"^ {0,3}(?:#|[-+*]|[0-9]{1,9}[.)])[ \t]+(?:\[[ xX]\][ \t]+)?"#, _text, "") & !~#ProseRelation
-		}
-	}
-	...
-}
-
 #IssueTextSection: #IssueSection & {
 	visible: !~#NoProvenance
 	source:  !~#NoWikilink
-	content: [...]
-	_relationText: [
-		for block in content if block.kind == "paragraph" {
-			#RelationText & {source: block.source, visible: block.visible}
-		},
-		for block in content if block.kind == "list" for item in block.items for paragraph in item.blocks if paragraph.kind == "paragraph" {
-			#RelationText & {source: paragraph.source, visible: paragraph.visible}
-		},
-	]
 }
 
 #IssueBodySection: #IssueTextSection & {

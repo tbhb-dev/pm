@@ -43,7 +43,7 @@ package content
 	_order: ["title", "outcome", "context", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #ChoreTitle & #RelationText
+		title: #ChoreTitle
 		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {

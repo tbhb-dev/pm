@@ -44,7 +44,7 @@ package content
 	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #EpicTitle & #RelationText
+		title: #EpicTitle
 		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {

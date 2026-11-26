@@ -58,7 +58,7 @@ import (
 	_order: ["title", "outcome", "context", "actual", "reproduction", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #DefectTitle & #RelationText
+		title: #DefectTitle
 		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {

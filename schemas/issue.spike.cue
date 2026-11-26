@@ -43,7 +43,7 @@ package content
 	_order: ["title", "question", "context", "decision", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #SpikeTitle & #RelationText
+		title: #SpikeTitle
 		question: #IssueBodySection & {
 			heading: "Question"
 			metrics: {
