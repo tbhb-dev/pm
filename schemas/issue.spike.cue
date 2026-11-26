@@ -11,6 +11,8 @@ package content
 	"acceptance-criteria": "State 1 to 3 observable conditions for answering the question and informing the decision." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a findings record or a decision link." + #VerificationItemHint
 	"out-of-scope":        #OutOfScopeHint
+	relates_to:            #RelatedIssueHint
+	related:               #RelatedHint
 }
 
 #Variant: #Draft & {
@@ -30,6 +32,7 @@ package content
 		})
 		assignees: [...string]
 		parent?: #IssueRef
+		relates_to?: [...#IssueRef]
 	})
 
 	metrics: {
@@ -37,10 +40,10 @@ package content
 		source: characters: <=1300
 	}
 
-	_order: ["title", "question", "context", "decision", "acceptance-criteria", "verification", "out-of-scope"]
+	_order: ["title", "question", "context", "decision", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #SpikeTitle
+		title: #SpikeTitle & {visible: !~#ProseRelation}
 		question: #IssueBodySection & {
 			heading: "Question"
 			metrics: {
@@ -69,5 +72,6 @@ package content
 			}
 		}
 		"out-of-scope": #OutOfScopeSection
+		related?:       #RelatedSection
 	})
 }

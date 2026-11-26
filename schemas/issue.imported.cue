@@ -4,8 +4,9 @@ package content
 // Load with tools' core.cue, taxonomy.cue and issue.cue, plus issue-sections.cue.
 
 #Hints: imported: {
-	title:   "Keep the original issue title."
-	context: "The import keeps the original text here. Refinement rewrites it into the destination variant."
+	title:      "Keep the original issue title."
+	relates_to: #RelatedIssueHint
+	context:    "The import keeps the original text here. Refinement rewrites it into the destination variant."
 }
 
 #ImportedTitle: #DraftBlock & {
@@ -30,6 +31,7 @@ package content
 		assignees: [...string]
 		parent?: #IssueRef
 		blocked_by?: [...#IssueRef]
+		relates_to?: [...#IssueRef]
 	})
 
 	metrics: {

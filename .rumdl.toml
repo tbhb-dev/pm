@@ -28,3 +28,7 @@ style = "backtick"
 # GitHub pastes the template into the pull request body, which starts with
 # the comment telling the author how to fill it, not a heading.
 ".github/PULL_REQUEST_TEMPLATE.md" = ["MD041"]
+# Related uses bare HTTPS URLs, and these invalid fixtures exercise list markers.
+"schemas/testdata/task/related-*.md" = ["MD034"]
+"schemas/testdata/task/related-asterisk.invalid.md" = ["MD004"]
+"schemas/testdata/defect/reproduction-gap.invalid.md" = ["MD029"]

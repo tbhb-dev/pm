@@ -8,9 +8,9 @@ Mike Cohn uses *conditions of satisfaction* for acceptance criteria. He writes t
 
 For most issue types, start with Outcome, one sentence stating what will be true when the work is done. Follow with Context and Acceptance criteria where applicable, then Verification and the required Out of scope section. For a Defect, put Actual and Reproduction after Context. For a Spike, start with Question and put Decision after Context. Chores list their results in Verification. A Task starts with Description, followed by Verification and Out of scope.
 
-Write 1 to 6 Reproduction steps as bullets starting with `S1:` followed by a space and count up by one. Use up to 20 visible words per step, including the ID. A fault whose steps are unknown belongs in a Task to find a reproduction, not in a Defect.
+Write 1 to 6 Reproduction steps as an ordered Markdown list. Start at `1.` and count up by one in the Markdown source. Use up to 20 visible words per step. The schema refuses bullets and `S1:`-style prefixes. If the steps are unknown, file a Task to find a reproduction.
 
-Start each acceptance criterion, verification item, and reproduction step with its ID, a colon, and a space, as in `- AC1: The preview opens`. Use `AC` for acceptance criteria, `V` for verification, and `S` for reproduction steps. Reserve `O` for a decision options list if a template adds one. Prefixes apply within each template. Start each list at 1 and count up by one, without leading zeros.
+Start each acceptance criterion and verification item with its ID, a colon, and a space, as in `- AC1: The preview opens`. Use `AC` for acceptance criteria and `V` for verification. Reserve `O` for a decision options list if a template adds one. Prefixes apply within each template. Start each list at 1 and count up by one, without leading zeros.
 
 For issues with acceptance criteria, write one observable outcome per criterion and name the evidence in Verification. An evidence item can cover multiple criteria if the reader can tell which ones it proves.
 
@@ -25,9 +25,9 @@ For issues with acceptance criteria, write one observable outcome per criterion 
 | Epic | 1 to 6 | 1 to 3 | 1 to 3 |
 | Initiative | 1 to 6 | 1 to 3 | 1 to 3 |
 
-Out of scope names what the issue deliberately does not cover. Write 1 to 3 bullets of 3 to 20 visible words each after Verification, without ID prefixes, or write a lone `- None.` after deciding on purpose that nothing is out of scope. The schema refuses `None.` beside other items and refuses a second `None.` item. The section allows up to 60 visible words and 480 source characters.
+Out of scope names what the issue deliberately leaves out. After Verification, write 1 to 3 bullets of 3 to 20 visible words each, without ID prefixes. If nothing is excluded, write `None.` as a single paragraph. The section allows up to 60 visible words and 480 source characters.
 
-Each criterion and verification item has 2 to 20 visible words, including its ID. The ID leaves room for 1 to 19 words of text. The Defect label `Regression test:` takes two of those words. Write 1 to 6 Reproduction steps with up to 20 visible words per step, including the ID. The Reproduction section allows up to 140 visible words and 1,100 source characters, and a Defect draft allows up to 260 visible words and 2,200 source characters.
+Each criterion and verification item has 2 to 20 visible words, including its ID. The ID leaves room for 1 to 19 words of text. The Defect label `Regression test:` takes two of those words. The Reproduction section allows up to 1,100 source characters, and a Defect draft allows up to 260 visible words and 2,200 source characters.
 
 A Spike's criteria describe what the findings must establish for the decision. Epic criteria describe observable parts of a capability, and Initiative criteria describe measurable results.
 
@@ -37,17 +37,43 @@ Research is an investigation that delivers a written report, with no build or ex
 
 For this repository, close completed work with evidence on the issue, such as a work note that links to a merged pull request, a result, or a decision. In Verification, use `ci_enforced` with a reference to the continuous integration (CI) workflow or check that covers the outcome. At closure, link to the run that supplies the evidence.
 
+## Related work
+
+Put related GitHub issues in the optional `relates_to` front matter list.
+
+```yaml
+relates_to:
+  - owner/repo#12
+  - owner/other-repo#34
+```
+
+The filing code resolves each reference to a GitHub Issue node ID. After creating the issue, call the GraphQL mutation `addRelatesTo` with the new issue's node ID as `issueId` and each related issue's node ID as `relatedIssueId`. GitHub exposes the relationship through `Issue.relatesTo`. Both endpoints must be issues.
+
+Put pull requests, commits, discussions, and web pages in an optional `## Related` section immediately after Out of scope. Write 1 to 8 dash bullets, each on one line. Start each bullet with an `https://` URL, a pull request reference in `owner/repo#N` form, or a commit reference in `owner/repo@sha` form with 4 to 40 hexadecimal digits. You can append a colon and a space followed by 1 to 12 visible words. The section counts toward the draft's word and character limits.
+
+```markdown
+## Related
+
+- https://github.com/owner/repo/pull/17
+- owner/repo#18: Follow-up pull request
+- owner/repo@0123abc: Retry prototype
+- https://github.com/owner/repo/discussions/19
+- https://example.org/reports: Reader guide
+```
+
+The schema refuses GitHub issue URLs in Related. A bare `owner/repo#N` can refer to either kind of GitHub object, so use it in Related only for a pull request. Authored issue text cannot start a line or sentence with `Related work:` or `Related:` outside the Related section.
+
 ## Schema and rendering
 
 The issue variants load the tools schemas alongside the local definitions in `schemas/issue-sections.cue`. The shared criterion and verification item rules require 2 to 20 visible words and reject standalone restatements such as “Tests pass.” Out of scope uses `#OutOfScopeSection` for every issue type, with its own item word floor and ordinary bullets. [Shared schemas](https://github.com/tbhb-dev/tools/tree/5192863b/schemas)
 
 Use `source` for provenance because issue body sections outside the imported variant refuse provenance sentences and can refuse hyphenated wikilinks even in code, while slugs without hyphens pass.
 
-The templates render required sections from supplied keys, including `first_out_of_scope` for every issue type. Insert optional sections in the order above when there is text for them, since the renderer raises `KeyError` for an absent key.
+The templates render required sections from supplied keys. Supply the full Out of scope body as `out_of_scope` for every template, either the paragraph `None.` or the Markdown bullets. Insert optional sections in the order above when there is text for them, since the renderer raises `KeyError` for an absent key.
 
 The shared title rules cap length and reject ticket prefixes. A Spike title must end with a question mark. Use an outcome for Initiative and a capability noun phrase for Epic. Feature uses `<Role> can <action>`, Task and Chore start with an imperative verb, and Defect uses `<Thing> <does wrong> when <condition>`. The kernel can evaluate `#KernelChecks.titleShape` separately to warn about phrasing.
 
-Use the imported variant only for the tracker import. It takes an assignee list and accepts Initiative, Epic, Feature, Defect, Chore, and Task as issue types. The area and role labels, parent, and `blocked_by` references are optional. The import sets Source to `Import`. Refinement keeps that value and assigns Work type and Priority as needed. The title needs at least one word and allows up to 256 visible characters. The required Context section allows up to 450 visible words, 2,600 source characters, and 40 lines of code. The draft allows up to 460 visible words and 2,700 source characters.
+Use the imported variant only for the tracker import. It takes an assignee list and accepts Initiative, Epic, Feature, Defect, Chore, and Task as issue types. The area and role labels, parent, and `blocked_by` and `relates_to` references are optional. The import sets Source to `Import`. It preserves the original Context, and refinement moves relationship prose to front matter or Related. Refinement keeps the Source value and assigns Work type and Priority as needed. The title needs at least one word and allows up to 256 visible characters. The required Context section allows up to 450 visible words, 2,600 source characters, and 40 lines of code. The draft allows up to 460 visible words and 2,700 source characters.
 
 ## Unverified by the schema
 

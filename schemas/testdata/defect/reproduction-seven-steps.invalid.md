@@ -10,13 +10,13 @@ The preview stops responding.
 
 ## Reproduction
 
-- S1: Open the monthly report.
-- S2: Open the monthly report.
-- S3: Open the monthly report.
-- S4: Open the monthly report.
-- S5: Open the monthly report.
-- S6: Open the monthly report.
-- S7: Open the monthly report.
+1. Open the monthly report.
+2. Open the monthly report.
+3. Open the monthly report.
+4. Open the monthly report.
+5. Open the monthly report.
+6. Open the monthly report.
+7. Open the monthly report.
 
 ## Acceptance criteria
 

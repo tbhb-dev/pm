@@ -10,7 +10,7 @@ The preview stops responding.
 
 ## Reproduction
 
-- S1: Open the monthly report from the dashboard after signing in and wait until the report finishes loading previously saved data.
+1. Open the monthly report from the dashboard after signing in and wait until the report finishes loading previously saved local data.
 
 ## Acceptance criteria
 

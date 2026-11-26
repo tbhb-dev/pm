@@ -28,4 +28,4 @@ Readers need reliable previews.
 
 ## Out of scope
 
-- None.
+None.

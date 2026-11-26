@@ -10,6 +10,8 @@ package content
 	"acceptance-criteria": "State 1 to 6 observable results or measures that indicate the outcome was reached." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as a measured result or a decision record." + #VerificationItemHint
 	"out-of-scope":        #OutOfScopeHint
+	relates_to:            #RelatedIssueHint
+	related:               #RelatedHint
 }
 
 #Variant: #Draft & {
@@ -29,6 +31,7 @@ package content
 		})
 		assignees: [...string]
 		parent?: _|_
+		relates_to?: [...#IssueRef]
 	})
 
 	metrics: {
@@ -36,10 +39,10 @@ package content
 		source: characters: <=1800
 	}
 
-	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope"]
+	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #InitiativeTitle
+		title: #InitiativeTitle & {visible: !~#ProseRelation}
 		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {
@@ -59,5 +62,6 @@ package content
 			}
 		}
 		"out-of-scope": #OutOfScopeSection
+		related?:       #RelatedSection
 	})
 }

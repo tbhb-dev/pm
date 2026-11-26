@@ -10,4 +10,4 @@
 
 ## Out of scope
 
-- {{first_out_of_scope}}
+{{out_of_scope}}

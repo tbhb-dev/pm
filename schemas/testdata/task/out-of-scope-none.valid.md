@@ -19,4 +19,4 @@ Add retries so readers can reopen failed reports.
 
 ## Out of scope
 
-- None.
+None.

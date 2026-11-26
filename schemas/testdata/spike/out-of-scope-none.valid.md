@@ -26,4 +26,4 @@ Choose cache policy.
 
 ## Out of scope
 
-- None.
+None.
