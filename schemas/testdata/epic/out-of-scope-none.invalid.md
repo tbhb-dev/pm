@@ -1,13 +1,12 @@
 ---
-type: Feature
+type: Epic
 area: area:reports
-fields:
-  work-type: Planned
+fields: {}
 assignees: []
 parent: owner/repo#53
 ---
 
-# Readers can retry previews
+# Responsive report previews
 
 ## Outcome
 
@@ -20,7 +19,6 @@ Readers need reliable previews.
 ## Acceptance criteria
 
 - AC1: Preview responds.
-- AC2: Retry works.
 
 ## Verification
 
@@ -28,4 +26,4 @@ Readers need reliable previews.
 
 ## Out of scope
 
-- None.
+None.

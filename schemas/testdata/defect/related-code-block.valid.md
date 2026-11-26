@@ -15,11 +15,16 @@ Readers can reopen previews.
 
 ## Actual
 
-The preview freezes.
+The preview freezes after printing the report label.
+
+```text
+Related: Preview notes
+Related work: Archived notes
+```
 
 ## Reproduction
 
-- S1: Open report.
+1. Open report.
 
 ## Acceptance criteria
 
@@ -28,7 +33,3 @@ The preview freezes.
 ## Verification
 
 - V1: Regression test: Preview responds.
-
-## Out of scope
-
-- None.

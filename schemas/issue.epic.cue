@@ -10,6 +10,8 @@ package content
 	"acceptance-criteria": "State 1 to 6 observable parts of the capability that must be present." + #CriteriaItemHint
 	verification:          "Give 1 to 3 ways to prove the criteria, such as an integrated demo or a capability read." + #VerificationItemHint
 	"out-of-scope":        #OutOfScopeHint
+	relates_to:            #RelatedIssueHint
+	related:               #RelatedHint
 }
 
 #KernelChecks: titleShape: {visible: !~#EpicShapeBan, ...}
@@ -31,6 +33,7 @@ package content
 		})
 		assignees: [...string]
 		parent: #IssueRef
+		relates_to?: [...#IssueRef]
 	})
 
 	metrics: {
@@ -38,7 +41,7 @@ package content
 		source: characters: <=1800
 	}
 
-	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope"]
+	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #EpicTitle
@@ -60,6 +63,7 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope": #OutOfScopeSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }

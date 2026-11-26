@@ -9,6 +9,8 @@ package content
 	context:        "Why this matters and what to know first. Link, don't paste."
 	verification:   "State 1 to 3 observable results of the upkeep, such as a configuration read or a command with its expected result." + #VerificationItemHint
 	"out-of-scope": #OutOfScopeHint
+	relates_to:     #RelatedIssueHint
+	related:        #RelatedHint
 }
 
 #KernelChecks: titleShape: {visible: =~#TaskShape, ...}
@@ -30,6 +32,7 @@ package content
 		})
 		assignees: [...string]
 		parent?: #IssueRef
+		relates_to?: [...#IssueRef]
 	})
 
 	metrics: {
@@ -37,7 +40,7 @@ package content
 		source: characters: <=1500
 	}
 
-	_order: ["title", "outcome", "context", "verification", "out-of-scope"]
+	_order: ["title", "outcome", "context", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #ChoreTitle
@@ -58,6 +61,7 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope": #OutOfScopeSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }

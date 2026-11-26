@@ -1,24 +1,26 @@
 ---
-type: Spike
+type: Feature
 area: area:reports
 fields:
   work-type: Planned
 assignees: []
+parent: owner/repo#53
 ---
 
-# Which cache improves reports?
+# Readers can retry previews
 
-## Question
+## Outcome
 
-Which cache wins?
+Readers can reopen previews.
 
-## Decision
+## Context
 
-Choose cache policy.
+Readers need reliable previews.
 
 ## Acceptance criteria
 
 - AC1: Preview responds.
+- AC2: Retry works.
 
 ## Verification
 
@@ -26,4 +28,4 @@ Choose cache policy.
 
 ## Out of scope
 
-- None.
+None.

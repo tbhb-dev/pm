@@ -18,4 +18,4 @@ Readers can reopen previews.
 
 ## Out of scope
 
-- None.
+None.

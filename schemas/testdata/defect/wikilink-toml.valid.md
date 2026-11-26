@@ -20,8 +20,8 @@ The preview stops responding.
 
 ## Reproduction
 
-- S1: Open the monthly report.
-- S2: Select the preview tab.
+1. Open the monthly report.
+2. Select the preview tab.
 
 ## Acceptance criteria
 

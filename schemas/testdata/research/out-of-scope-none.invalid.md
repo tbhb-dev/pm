@@ -29,4 +29,4 @@ reports/cache.md
 
 ## Out of scope
 
-- None.
+None.

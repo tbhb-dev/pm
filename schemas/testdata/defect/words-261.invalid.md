@@ -11,7 +11,7 @@ assignees: []
 
 ## Outcome
 
-The preview stays responsive when the monthly report opens after readers apply a previous month filter in the dashboard.
+The preview stays responsive when the monthly report opens after readers apply a previous month filter in the dashboard without refreshing the report preview first.
 
 ## Actual
 
@@ -19,12 +19,12 @@ The preview stops responding.
 
 ## Reproduction
 
-- S1: Open the monthly report from the dashboard after signing in and wait until the report finishes loading saved data.
-- S2: Select the preview tab beside the report summary and wait until the loading indicator disappears from the preview panel.
-- S3: Expand the date filter near the report and choose the previous month while keeping the report preview tab open.
-- S4: Apply the selected date filter and wait for report totals to update before clicking anywhere inside the preview panel.
-- S5: Scroll to the bottom of the preview panel and select the final report row while the filter remains active.
-- S6: Return to the top of the preview panel and try opening the report menu while watching the frozen interface.
+1. Open the monthly report from the dashboard after signing in and wait until the report finishes loading saved data.
+2. Select the preview tab beside the report summary and wait until the loading indicator disappears from the preview panel.
+3. Expand the date filter near the report and choose the previous month while keeping the report preview tab open.
+4. Apply the selected date filter and wait for report totals to update before clicking anywhere inside the preview panel.
+5. Scroll to the bottom of the preview panel and select the final report row while the filter remains active.
+6. Return to the top of the preview panel and try opening the report menu while watching the frozen interface.
 
 ## Acceptance criteria
 

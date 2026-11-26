@@ -19,7 +19,7 @@ The preview freezes.
 
 ## Reproduction
 
-- S1: Open report.
+1. Open report.
 
 ## Acceptance criteria
 

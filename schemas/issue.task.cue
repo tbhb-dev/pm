@@ -9,6 +9,8 @@ package content
 	description:    "Explain what the work is and why it matters in a few sentences."
 	verification:   "Give 1 to 3 ways to prove the task is complete." + #VerificationItemHint
 	"out-of-scope": #OutOfScopeHint
+	relates_to:     #RelatedIssueHint
+	related:        #RelatedHint
 }
 
 #KernelChecks: {
@@ -31,6 +33,7 @@ package content
 		})
 		assignees: [...string]
 		parent: #IssueRef
+		relates_to?: [...#IssueRef]
 	})
 
 	metrics: {
@@ -38,7 +41,8 @@ package content
 		source: characters: <=1300
 	}
 
-	blockOrder: ["title", "description", "verification", "out-of-scope"]
+	_order: ["title", "description", "verification", "out-of-scope", "related"]
+	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #TaskTitle
 		description: #IssueBodySection & {
@@ -49,7 +53,8 @@ package content
 				codeLines: <=0
 			}
 		}
-		verification:   #VerificationSection
-		"out-of-scope": #OutOfScopeSection
+		verification:    #VerificationSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }

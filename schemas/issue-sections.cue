@@ -1,6 +1,9 @@
 package content
 
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
 
 // Mirrors the shared taxonomy's #Source. Identical definitions unify, so the shared copy can arrive later.
 #Source: "Import"
@@ -22,10 +25,37 @@ import "strings"
 // Source preserves backticks. Require a hyphen to allow TOML array headers.
 #NoWikilink: #"(?:^|[^\pL\pM\pN_`])\[\[[a-z][a-z0-9]*(?:-[a-z0-9]+)+(?:[|#][^\]\r\n]+)?\]\]"#
 
-#IssueBodySection: #IssueSection & {
+#IssueTextSection: #IssueSection & {
 	visible: !~#NoProvenance
 	source:  !~#NoWikilink
+}
+
+#IssueBodySection: #IssueTextSection & {
 	metrics: orderedLists: 0
+}
+
+// The parser retains the start of an ordered list but drops subsequent markers
+// from its visible text. Check each marker in the item source.
+#ReproductionSection: #IssueTextSection & {
+	heading: "Reproduction"
+	metrics: {
+		visible: words:     <=140
+		source: characters: <=1100
+		codeLines: <=10
+		lists:     1
+		listItems: >=1 & <=6
+	}
+	content: [...(#BlankLine | #List & {
+		style: "ordered"
+		start: 1
+		items: [...#IssueItem & {
+			visible: !~#"(?i)^S[0-9]+:"#
+			metrics: visible: words: >=1 & <=20
+		}]
+		items: [for index, _ in items {
+			{source: =~"^ {0,3}\(index+1)\\.[ \\t]+", ...}
+		}]
+	})]
 }
 
 // Match each item's visible ID against its one-based position in the list.
@@ -78,17 +108,49 @@ import "strings"
 #OutOfScopeSection: #IssueBodySection & {
 	heading: "Out of scope"
 	metrics: {
-		visible: words:     >=1 & <=60
+		visible: words:     <=60
 		source: characters: <=480
-		lists:            1
-		listItems:        >=1 & <=3
 		codeLines:        0
 		fencedCodeBlocks: 0
+		lists:            1
+		listItems:        >=1 & <=3
 	}
 	content: [...(#BlankLine | #List & {
 		style: "unordered"
-		items: [#IssueItem & {visible: "None."}] | [...#IssueItem & {metrics: visible: words: >=3 & <=20}]
+		items: [...#IssueItem & {metrics: visible: words: >=3 & <=20}]
 	})]
 }
 
-#OutOfScopeHint: "Name what this issue deliberately does not cover, one bullet each. Use 1 to 3 items of 3 to 20 words each, or a lone 'None.' after deciding that on purpose."
+#OutOfScopeHint: "If the issue has exclusions, list them in 1 to 3 bullets of 3 to 20 words each. Omit Out of scope when there are no exclusions."
+
+#RelatedIssueHint: "Use the optional relates_to front matter list for GitHub issues, with one owner/repo#N reference per entry."
+#RelatedHint:      "When there are related pull requests, commits, discussions, or web pages, add Related after Out of scope if present or after Verification otherwise. Use 1 to 8 dash bullets, each with an HTTPS URL, owner/repo#N pull request, or owner/repo@sha commit. Optionally append ': ' and a description of 1 to 12 words. Keep 'Related work:' and 'Related:' labels out of prose in other sections."
+
+#GitHubRef:  #"(?i:[a-z0-9][a-z0-9-]*/[a-z0-9._-]+(?:#[1-9][0-9]*|@[a-f0-9]{4,40}))"#
+#HTTPSRef:   #"https://(?:[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?|\[[A-Fa-f0-9:.]+\])(?::[0-9]+)?(?:[/?#][^\s<>"`]*)?"#
+#RelatedRef: "(?:" + #GitHubRef + "|" + #HTTPSRef + ")"
+
+#RelatedItem: #IssueItem & {
+	source:  string
+	visible: string
+	_line:   strings.TrimSpace(source)
+	_line:   =~("^- " + #RelatedRef + #"(?:: \S[^\r\n]*)?$"#)
+	// A full issue URL identifies an issue. A bare owner/repo#N is ambiguous.
+	_line: !~#"(?i)^- https://github\.com/[^/\s]+/[^/\s]+/issues/[1-9][0-9]*(?:[/?#:\s]|$)"#
+	if strings.Contains(_line, ": ") {
+		_description: strings.SplitN(visible, ": ", 2)[1]
+		_words:       len(regexp.FindAll(#"[\pL\pN_]+"#, _description, -1)) & >=1 & <=12
+	}
+}
+
+#RelatedSection: #IssueSection & {
+	heading: "Related"
+	metrics: {
+		lists:     1
+		listItems: >=1 & <=8
+	}
+	content: [...(#BlankLine | #List & {
+		style: "unordered"
+		items: [...#RelatedItem]
+	})]
+}

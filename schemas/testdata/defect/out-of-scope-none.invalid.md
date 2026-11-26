@@ -19,7 +19,7 @@ The preview freezes.
 
 ## Reproduction
 
-- S1: Open report.
+1. Open report.
 
 ## Acceptance criteria
 
@@ -28,3 +28,7 @@ The preview freezes.
 ## Verification
 
 - V1: Regression test: Preview responds.
+
+## Out of scope
+
+None.

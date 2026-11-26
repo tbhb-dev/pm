@@ -12,6 +12,8 @@ package content
 	"deliverable-location": "Where the report will exist. Give one path or link."
 	verification:           "Keep the bullet 'V1: The report exists at the stated deliverable location' without a trailing period. Link the report on the issue before closing."
 	"out-of-scope":         #OutOfScopeHint
+	relates_to:             #RelatedIssueHint
+	related:                #RelatedHint
 }
 
 #Variant: #Draft & {
@@ -31,6 +33,7 @@ package content
 		assignees: [...string]
 		// An Epic, an Initiative, or none. The schema checks the reference format only.
 		parent?: #IssueRef
+		relates_to?: [...#IssueRef]
 	})
 
 	metrics: {
@@ -38,7 +41,8 @@ package content
 		source: characters: <=1200
 	}
 
-	blockOrder: ["title", "question", "decision", "scope", "deliverable-location", "verification", "out-of-scope"]
+	_order: ["title", "question", "decision", "scope", "deliverable-location", "verification", "out-of-scope", "related"]
+	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
 		title: #SpikeTitle
 		question: #IssueBodySection & {
@@ -82,6 +86,7 @@ package content
 			metrics: listItems: 1
 			visible: "V1: The report exists at the stated deliverable location"
 		}
-		"out-of-scope": #OutOfScopeSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }
