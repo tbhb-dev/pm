@@ -18,7 +18,3 @@ Add retries so readers can reopen failed reports.
 ## Verification
 
 - V1: Preview responds.
-
-## Out of scope
-
-None.

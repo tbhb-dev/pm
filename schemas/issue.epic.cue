@@ -44,7 +44,7 @@ package content
 	_order: ["title", "outcome", "context", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #EpicTitle & {visible: !~#ProseRelation}
+		title: #EpicTitle & #RelationText
 		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {
@@ -63,7 +63,7 @@ package content
 				codeLines: <=10
 			}
 		}
-		"out-of-scope": #OutOfScopeSection
-		related?:       #RelatedSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }

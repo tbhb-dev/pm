@@ -17,10 +17,6 @@ Add retries so readers can reopen failed reports.
 
 - V1: Preview responds.
 
-## Out of scope
-
-None.
-
 ## Related
 
 - https://example.org/reports: A short guide to retry behavior for readers who encounter temporary loading errors

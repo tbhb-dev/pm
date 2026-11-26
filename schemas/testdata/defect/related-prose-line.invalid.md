@@ -33,7 +33,3 @@ The preview freezes.
 ## Verification
 
 - V1: Regression test: Preview responds.
-
-## Out of scope
-
-None.

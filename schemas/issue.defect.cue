@@ -58,7 +58,7 @@ import (
 	_order: ["title", "outcome", "context", "actual", "reproduction", "acceptance-criteria", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #DefectTitle & {visible: !~#ProseRelation}
+		title: #DefectTitle & #RelationText
 		outcome: #IssueBodySection & {
 			heading: "Outcome"
 			metrics: {
@@ -90,7 +90,7 @@ import (
 				codeLines: <=10
 			}
 		}
-		"out-of-scope": #OutOfScopeSection
-		related?:       #RelatedSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }

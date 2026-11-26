@@ -44,7 +44,7 @@ package content
 	_order: ["title", "question", "decision", "scope", "deliverable-location", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #SpikeTitle & {visible: !~#ProseRelation}
+		title: #SpikeTitle & #RelationText
 		question: #IssueBodySection & {
 			heading: "Question"
 			metrics: {
@@ -86,7 +86,7 @@ package content
 			metrics: listItems: 1
 			visible: "V1: The report exists at the stated deliverable location"
 		}
-		"out-of-scope": #OutOfScopeSection
-		related?:       #RelatedSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }

@@ -27,9 +27,66 @@ import (
 
 #ProseRelation: #"(?i)(?:^|[\r\n]|[.!?]["'”’)\]]*[ \t]+)[ \t]*(?:(?:AC|V)[1-9][0-9]*: )?Related(?:[ \t]+work)?:"#
 
+// The normalized text flattens inline code. Use the paragraph source when
+// a code span could account for a relation label in the visible text.
+#RelationText: {
+	source:  string
+	visible: string
+	if visible =~ #ProseRelation {
+		_parts: [for fragment in regexp.FindAll(#"[^\x60]*(?:\x60+|$)"#, source, -1) {
+			let Text = strings.TrimRight(fragment, "`")
+			{text: Text, ticks: strings.TrimPrefix(fragment, Text)}
+		}]
+		// Pair backtick runs of equal length, then skip through the closing run.
+		_scan: [{end: -1, text: "", code: false}, for index, part in _parts {
+			let PreviousEnd = _scan[index].end
+			if index <= PreviousEnd {
+				{end: PreviousEnd, text: "", code: false}
+			}
+			if index > PreviousEnd {
+				// An odd number of backslashes escapes the first opening backtick.
+				let Escaped = part.text =~ #"(?:^|[^\\])(?:\\\\)*\\$"#
+				_open: string
+				if Escaped {
+					_open: strings.TrimPrefix(part.ticks, "`")
+				}
+				if !Escaped {
+					_open: part.ticks
+				}
+				_ends: [for end, candidate in _parts if end > index && _open != "" && candidate.ticks == _open {end}]
+				if len(_ends) == 0 {
+					{end: index, text: part.text + part.ticks, code: false}
+				}
+				if len(_ends) > 0 {
+					{end: _ends[0], text: part.text + "`", code: true}
+				}
+			}
+		}]
+		_code: [for segment in _scan if segment.code {segment}]
+		if len(_code) == 0 {
+			visible: !~#ProseRelation
+		}
+		if len(_code) > 0 {
+			_text: strings.Join([for segment in _scan {segment.text}], "")
+			// Paragraph source can include the title or list marker.
+			_prose: regexp.ReplaceAll(#"^ {0,3}(?:#|[-+*]|[0-9]{1,9}[.)])[ \t]+(?:\[[ xX]\][ \t]+)?"#, _text, "") & !~#ProseRelation
+		}
+	}
+	...
+}
+
 #IssueTextSection: #IssueSection & {
-	visible: !~#NoProvenance & !~#ProseRelation
+	visible: !~#NoProvenance
 	source:  !~#NoWikilink
+	content: [...]
+	_relationText: [
+		for block in content if block.kind == "paragraph" {
+			#RelationText & {source: block.source, visible: block.visible}
+		},
+		for block in content if block.kind == "list" for item in block.items for paragraph in item.blocks if paragraph.kind == "paragraph" {
+			#RelationText & {source: paragraph.source, visible: paragraph.visible}
+		},
+	]
 }
 
 #IssueBodySection: #IssueTextSection & {
@@ -110,34 +167,23 @@ import (
 #OutOfScopeSection: #IssueBodySection & {
 	heading: "Out of scope"
 	metrics: {
-		visible: words:     >=1 & <=60
+		visible: words:     <=60
 		source: characters: <=480
 		codeLines:        0
 		fencedCodeBlocks: 0
-	}
-} & ({
-	metrics: {
-		lists:      0
-		paragraphs: 1
-	}
-	content: [...(#BlankLine | #Paragraph & {
-		source: =~#"^ {0,3}None\.[ \t]*(?:\r\n?|\n)?$"#
-	})]
-} | {
-	metrics: {
-		lists:     1
-		listItems: >=1 & <=3
+		lists:            1
+		listItems:        >=1 & <=3
 	}
 	content: [...(#BlankLine | #List & {
 		style: "unordered"
 		items: [...#IssueItem & {metrics: visible: words: >=3 & <=20}]
 	})]
-})
+}
 
-#OutOfScopeHint: "Name what this issue deliberately does not cover in 1 to 3 bullets of 3 to 20 words each. If nothing is excluded, write 'None.' as a single paragraph."
+#OutOfScopeHint: "If the issue has exclusions, list them in 1 to 3 bullets of 3 to 20 words each. Omit Out of scope when there are no exclusions."
 
 #RelatedIssueHint: "Use the optional relates_to front matter list for GitHub issues, with one owner/repo#N reference per entry."
-#RelatedHint:      "When there are related pull requests, commits, discussions, or web pages, add Related immediately after Out of scope. Use 1 to 8 dash bullets, each with an HTTPS URL, owner/repo#N pull request, or owner/repo@sha commit. Optionally append ': ' and a description of 1 to 12 words. Keep 'Related work:' and 'Related:' labels out of other sections."
+#RelatedHint:      "When there are related pull requests, commits, discussions, or web pages, add Related after Out of scope if present or after Verification otherwise. Use 1 to 8 dash bullets, each with an HTTPS URL, owner/repo#N pull request, or owner/repo@sha commit. Optionally append ': ' and a description of 1 to 12 words. Keep 'Related work:' and 'Related:' labels out of prose in other sections."
 
 #GitHubRef:  #"(?i:[a-z0-9][a-z0-9-]*/[a-z0-9._-]+(?:#[1-9][0-9]*|@[a-f0-9]{4,40}))"#
 #HTTPSRef:   #"https://(?:[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?|\[[A-Fa-f0-9:.]+\])(?::[0-9]+)?(?:[/?#][^\s<>"`]*)?"#

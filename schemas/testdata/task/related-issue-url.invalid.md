@@ -17,10 +17,6 @@ Add retries so readers can reopen failed reports.
 
 - V1: Preview responds.
 
-## Out of scope
-
-None.
-
 ## Related
 
 - https://github.com/owner/repo/issues/12: Retry tracking

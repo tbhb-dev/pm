@@ -44,7 +44,7 @@ package content
 	_order: ["title", "description", "verification", "out-of-scope", "related"]
 	blockOrder: [for k in _order if blocks[k] != _|_ {k}]
 	blocks: close({
-		title: #TaskTitle & {visible: !~#ProseRelation}
+		title: #TaskTitle & #RelationText
 		description: #IssueBodySection & {
 			heading: "Description"
 			metrics: {
@@ -53,8 +53,8 @@ package content
 				codeLines: <=0
 			}
 		}
-		verification:   #VerificationSection
-		"out-of-scope": #OutOfScopeSection
-		related?:       #RelatedSection
+		verification:    #VerificationSection
+		"out-of-scope"?: #OutOfScopeSection
+		related?:        #RelatedSection
 	})
 }

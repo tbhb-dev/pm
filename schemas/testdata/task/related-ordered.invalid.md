@@ -17,10 +17,6 @@ Add retries so readers can reopen failed reports.
 
 - V1: Preview responds.
 
-## Out of scope
-
-None.
-
 ## Related
 
 1. https://example.org/reports
